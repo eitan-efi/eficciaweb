@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
+import Script from "next/script";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -29,6 +30,8 @@ export default function RootLayout({
     >
       <body className="min-h-[100dvh] flex flex-col bg-background text-foreground">
         {children}
+        <Script src="https://cdn.botpress.cloud/webchat/v3.6/inject.js" strategy="afterInteractive" />
+        <Script src="https://files.bpcontent.cloud/2026/03/31/17/20260331173524-1F4B79XI.js" strategy="lazyOnload" />
       </body>
     </html>
   );
