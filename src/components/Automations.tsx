@@ -1,14 +1,14 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Lightning, Files, PaperPlaneRight, Database, ChartBar, Wrench } from "@phosphor-icons/react/dist/ssr";
+import { ChatCircle, Files, PaperPlaneRight, Database, ChartBar, Wrench } from "@phosphor-icons/react/dist/ssr";
 
 const automations = [
     {
         id: "01",
         title: "Respuesta Inmediata",
-        description: "Cierra la brecha de atención. Contestar a leads en menos de 5 minutos te hace 10x más propenso a convertirlos.",
-        icon: <Lightning weight="duotone" className="w-8 h-8 text-accent" />
+        description: "Chatbot en tu web o WhatsApp que atiende a tus clientes al instante — incluso fuera de horario. Responder en menos de 5 minutos hace que sea 10x más probable cerrar la venta.",
+        icon: <ChatCircle weight="duotone" className="w-8 h-8 text-accent" />
     },
     {
         id: "02",
@@ -64,7 +64,7 @@ export function Automations() {
                             <span className="text-accent/80">Resultados palpables hoy.</span>
                         </h2>
                         <p className="text-lg text-white/50 max-w-2xl font-light">
-                            Desházte de tareas repetitivas y gana más facilidad operativa. Implementamos las soluciones precisas que tus sueños de rentabilidad exigen, evitando la complejidad innecesaria.
+                            Automatizamos lo que te quita tiempo y aleja a tu equipo de lo que importa. Sin tecnología innecesaria, sin proyectos que nunca terminan.
                         </p>
                     </motion.div>
                 </div>
