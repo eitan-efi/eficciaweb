@@ -31,7 +31,7 @@ const automations = [
     {
         id: "05",
         title: "Reportes Automáticos",
-        description: "Sistemas de KPIs al instante. Recibe resúmenes ejecutivos directamente en tu Slack o WhatsApp diario.",
+        description: "Deja de armar reportes a mano. Recibe un resumen de tus métricas clave directo en Slack o WhatsApp, todos los días, sin intervención humana.",
         icon: <ChartBar weight="duotone" className="w-8 h-8 text-accent/80 group-hover:text-accent transition-colors" />
     },
     {
@@ -57,11 +57,11 @@ export function Automations() {
                         className="flex flex-col items-center"
                     >
                         <div className="inline-flex items-center gap-2 px-4 py-1.5 mb-6 text-sm font-semibold rounded-full bg-accent/10 text-accent border border-accent/20 shadow-[0_0_10px_rgba(2,132,199,0.2)]">
-                            Victorias Rápidas
+                            Lo que implementamos
                         </div>
                         <h2 className="text-4xl md:text-5xl lg:text-6xl font-medium tracking-tighter mb-6 text-white text-balance">
-                            Nuestros Servicios. <br className="hidden md:block" />
-                            <span className="text-accent/80">Resultados palpables hoy.</span>
+                            Soluciones concretas. <br className="hidden md:block" />
+                            <span className="text-accent/80">Impacto desde el día uno.</span>
                         </h2>
                         <p className="text-lg text-white/50 max-w-2xl font-light">
                             Automatizamos lo que te quita tiempo y aleja a tu equipo de lo que importa. Sin tecnología innecesaria, sin proyectos que nunca terminan.

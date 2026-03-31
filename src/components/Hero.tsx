@@ -28,7 +28,7 @@ export function Hero() {
                         className="inline-flex items-center gap-2 px-4 py-1.5 mb-8 text-xs font-semibold tracking-widest uppercase rounded-full bg-accent/10 sm:bg-white/5 text-accent sm:text-foreground border border-accent/20 sm:border-white/10 backdrop-blur-sm shadow-[0_0_15px_rgba(2,132,199,0.3)]"
                     >
                         <span className="w-1.5 h-1.5 rounded-full bg-accent animate-pulse" />
-                        Tu socio estratégico para crecer con IA
+                        Consultoría de IA para PYMEs
                     </motion.div>
 
                     <h1 className="text-5xl md:text-7xl lg:text-[6.5rem] font-medium tracking-tighter leading-[1.0] text-foreground mb-8 text-transparent bg-clip-text bg-gradient-to-b from-white to-white/60">
@@ -37,7 +37,7 @@ export function Hero() {
                     </h1>
 
                     <p className="text-lg md:text-2xl text-foreground/50 max-w-3xl leading-relaxed mb-12 font-light">
-                        Sistemas, automatizaciones y agentes para tu PYME. Diagnóstico, claridad e implementación sin los costos de una consultora tradicional.
+                        La mayoría de los dueños de PYME saben que hay procesos que se podrían automatizar — pero no saben por dónde partir. Nosotros lo diagnosticamos e implementamos por ellos.
                     </p>
 
                     <div className="flex flex-col sm:flex-row items-center gap-6">

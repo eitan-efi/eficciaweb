@@ -5,10 +5,10 @@ import { PremiumButton } from "./PremiumButton";
 import { ArrowUpRight } from "@phosphor-icons/react/dist/ssr";
 
 const steps = [
-    { id: "01", title: "Auditoría Profunda", desc: "Mapeo completo de las operaciones de tu empresa. Encontramos ineficiencias, cuellos de botella y fugas de capital donde la IA puede operar." },
-    { id: "02", title: "Diseño de Arquitectura", desc: "No te entregamos un PDF teórico. Armamos una ruta estructural de automatización con las herramientas exactas que implementaremos." },
-    { id: "03", title: "Ejecución Delegada", desc: "Construimos, integramos y probamos los sistemas en tus procesos reales. Tú sigues dirigiendo; nosotros montamos la infraestructura tecnológica." },
-    { id: "04", title: "Medición y Escalabilidad", desc: "Optimizamos basados en ROAS, horas ahorradas y conversión bruta. Una vez estable, replicamos el sistema en otras áreas." }
+    { id: "01", title: "Auditoría Profunda", desc: "Revisamos cómo funciona tu empresa por dentro: qué procesos consumen más tiempo, dónde se escapa dinero y qué tiene sentido automatizar primero." },
+    { id: "02", title: "Hoja de Ruta Concreta", desc: "No te dejamos con un PDF y buena suerte. Armamos el plan con herramientas concretas, tiempos reales y pasos claros para ejecutar." },
+    { id: "03", title: "Implementación Real", desc: "Construimos e integramos todo en tus procesos reales. Tú no necesitas tocar código ni entender la tecnología — nosotros nos encargamos." },
+    { id: "04", title: "Medición y Escalabilidad", desc: "Medimos qué está funcionando: tiempo ahorrado, leads capturados, ventas generadas. Si funciona, lo escalamos a más áreas de tu empresa." }
 ];
 
 export function Consulting() {
@@ -26,14 +26,14 @@ export function Consulting() {
                         className="flex-1"
                     >
                         <div className="inline-flex items-center gap-2 px-3 py-1 mb-6 text-sm font-medium rounded-full bg-accent/20 text-accent ring-1 ring-inset ring-accent/30">
-                            Sistemas de Raíz
+                            Cómo trabajamos
                         </div>
                         <h2 className="text-5xl md:text-7xl font-medium tracking-tighter mb-6 text-white leading-tight">
-                            Infraestructura <br className="hidden md:block" />
-                            <span className="text-white/30">IA que perdura.</span>
+                            Construimos sistemas. <br className="hidden md:block" />
+                            <span className="text-white/30">No tiramos parches.</span>
                         </h2>
                         <p className="text-xl text-white/50 max-w-lg font-light leading-relaxed">
-                            No ponemos parches. Construimos sistemas duraderos que generan un cambio estructural en cómo opera y escala tu empresa.
+                            Cuatro pasos para tener IA funcionando en tu empresa — sin que necesites saber de tecnología ni contratar un equipo técnico.
                         </p>
                     </motion.div>
 
