@@ -28,3 +28,14 @@ body {
   font-family: var(--font-sans), sans-serif;
   overflow-x: hidden;
 }
+
+/* Animación intermitente para el globo de Botpress */
+@keyframes tooltip-fade {
+  0%, 10% { opacity: 0; transform: translateY(10px); visibility: hidden; }
+  15%, 45% { opacity: 1; transform: translateY(0); visibility: visible; }
+  50%, 100% { opacity: 0; transform: translateY(10px); visibility: hidden; }
+}
+
+.animate-tooltip-fade {
+  animation: tooltip-fade 15s ease-in-out infinite;
+}

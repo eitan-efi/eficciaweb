@@ -37,11 +37,11 @@ export default function RootLayout({
           className="fixed bottom-8 right-8 w-16 h-16 rounded-full border-[3px] border-white bg-white shadow-lg cursor-pointer p-0 z-[9999] transition-all duration-300 hover:-translate-y-1 hover:scale-105 hover:shadow-xl group"
           aria-label="Abrir chat de soporte"
         >
-          {/* Globo de texto (Speech Bubble) animado */}
-          <div className="absolute bottom-full right-0 mb-4 w-[14rem] sm:w-[16rem] bg-white text-slate-800 text-sm font-semibold p-4 rounded-2xl shadow-[0_10px_25px_-5px_rgba(0,0,0,0.2)] border border-slate-100 pointer-events-none animate-[bounce_3s_infinite] transition-opacity duration-300">
-            👋 ¡Hola! ¿Necesitas ayuda con tu PYME?
+          {/* Globo de texto (Speech Bubble) animado intermitente */}
+          <div className="absolute bottom-full right-0 mb-4 w-[14rem] sm:w-[16rem] bg-slate-900 text-white text-sm font-semibold p-4 rounded-2xl shadow-[0_10px_25px_-5px_rgba(0,0,0,0.5)] border border-slate-700 pointer-events-none animate-tooltip-fade">
+            👋 Hola te ayudo a crecer tu negocio
             {/* Cola del globo apuntando hacia el avatar */}
-            <div className="absolute -bottom-2 right-6 w-4 h-4 bg-white border-b border-r border-slate-100 transform rotate-45"></div>
+            <div className="absolute -bottom-2 right-6 w-4 h-4 bg-slate-900 border-b border-r border-slate-700 transform rotate-45"></div>
           </div>
 
           {/* eslint-disable-next-line @next/next/no-img-element */}
