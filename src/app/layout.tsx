@@ -32,18 +32,18 @@ export default function RootLayout({
         {children}
 
         {/* Botón Personalizado de Botpress (Avatar Flotante) */}
-        <button 
-          id="bp-toggle-chat" 
+        <button
+          id="bp-toggle-chat"
           className="fixed bottom-8 right-8 w-16 h-16 rounded-full border-[3px] border-white bg-white shadow-lg cursor-pointer p-0 z-[9999] transition-all duration-300 hover:-translate-y-1 hover:scale-105 hover:shadow-xl group"
           aria-label="Abrir chat de soporte"
         >
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img 
-            src="https://i.pravatar.cc/150?img=11" 
-            alt="Asesor Eficcia" 
-            className="w-full h-full rounded-full object-cover"
+          <img
+            src="https://i.pravatar.cc/150?img=11"
+            alt="Asesor Eficcia"
+            className="w-full h-full rounded-full object-cover pointer-events-none"
           />
-          <span className="absolute -top-1 -right-1 bg-red-500 text-white text-[12px] font-bold w-[22px] h-[22px] flex items-center justify-center rounded-full border-2 border-white animate-pulse">
+          <span className="absolute -top-1 -right-1 bg-red-500 text-white text-[12px] font-bold w-[22px] h-[22px] flex items-center justify-center rounded-full border-2 border-white animate-pulse pointer-events-none">
             1
           </span>
         </button>
