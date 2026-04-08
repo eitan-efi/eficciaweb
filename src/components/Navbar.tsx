@@ -1,8 +1,10 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import { motion } from "framer-motion";
 import { ArrowRight } from "@phosphor-icons/react/dist/ssr";
+import { COPY } from "@/lib/copy";
 
 export function Navbar() {
     return (
@@ -28,15 +30,13 @@ export function Navbar() {
             </div>
 
             <div className="relative z-10 flex items-center">
-                <a
-                    href="https://calendly.com/eitan-eficcia/30min"
-                    target="_blank"
-                    rel="noopener noreferrer"
+                <Link
+                    href="/quiz"
                     className="group relative inline-flex items-center justify-center px-5 py-2.5 text-sm font-medium transition-all rounded-full bg-foreground text-background hover:bg-foreground/90"
                 >
-                    <span>Agendar Diagnóstico</span>
+                    <span>{COPY.navbar.cta}</span>
                     <ArrowRight weight="bold" className="ml-2 w-4 h-4 transition-transform group-hover:translate-x-1" />
-                </a>
+                </Link>
             </div>
         </motion.nav>
     );

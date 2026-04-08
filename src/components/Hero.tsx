@@ -1,8 +1,9 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { PremiumButton } from "./PremiumButton";
 import { ArrowRight } from "@phosphor-icons/react/dist/ssr";
+import { COPY } from "@/lib/copy";
+import Link from "next/link";
 
 export function Hero() {
     return (
@@ -11,7 +12,7 @@ export function Hero() {
             <div className="absolute inset-0 z-0 bg-background pointer-events-none" />
 
             {/* Morningside inspired ambient glow */}
-            <div className="absolute top-[40%] left-1/2 -translate-x-1/2 -translate-y-1/2 w-[900px] h-[700px] bg-accent/30 rounded-full blur-[140px] opacity-60 pointer-events-none mix-blend-screen" />
+            <div className="absolute top-[40%] left-1/2 -translate-x-1/2 -translate-y-1/2 w-[900px] h-[700px] bg-sky-600/30 rounded-full blur-[140px] opacity-60 pointer-events-none mix-blend-screen" />
             <div className="absolute inset-0 z-0 opacity-[0.02] bg-[url('https://grainy-gradients.vercel.app/noise.svg')] pointer-events-none" />
 
             <div className="container relative z-10 max-w-7xl mx-auto px-4 sm:px-6 flex flex-col items-center text-center">
@@ -25,25 +26,28 @@ export function Hero() {
                         initial={{ opacity: 0, scale: 0.95 }}
                         animate={{ opacity: 1, scale: 1 }}
                         transition={{ delay: 0.3, duration: 0.6 }}
-                        className="inline-flex items-center gap-2 px-4 py-1.5 mb-8 text-xs font-semibold tracking-widest uppercase rounded-full bg-accent/10 sm:bg-white/5 text-accent sm:text-foreground border border-accent/20 sm:border-white/10 backdrop-blur-sm shadow-[0_0_15px_rgba(2,132,199,0.3)]"
+                        className="inline-flex items-center gap-2 px-4 py-1.5 mb-8 text-xs font-semibold tracking-widest uppercase rounded-full bg-sky-500/10 sm:bg-white/5 text-sky-400 sm:text-white border border-sky-500/20 sm:border-white/10 backdrop-blur-sm shadow-[0_0_15px_rgba(2,132,199,0.3)]"
                     >
-                        <span className="w-1.5 h-1.5 rounded-full bg-accent animate-pulse" />
-                        Consultoría de IA para PYMEs
+                        <span className="w-1.5 h-1.5 rounded-full bg-sky-500 animate-pulse" />
+                        {COPY.hero.badge}
                     </motion.div>
 
-                    <h1 className="text-5xl md:text-7xl lg:text-[6.5rem] font-medium tracking-tighter leading-[1.0] text-foreground mb-8 text-transparent bg-clip-text bg-gradient-to-b from-white to-white/60">
-                        Inteligencia Artificial <br className="hidden md:block" />
-                        Que Mueve La Aguja.
+                    <h1 className="text-5xl md:text-7xl lg:text-[6.5rem] font-medium tracking-tighter leading-[1.0] text-white mb-8 text-transparent bg-clip-text bg-gradient-to-b from-white to-white/60 whitespace-pre-wrap">
+                        {COPY.hero.headline}
                     </h1>
 
-                    <p className="text-lg md:text-2xl text-foreground/50 max-w-3xl leading-relaxed mb-12 font-light">
-                        La mayoría de los dueños de PYME saben que hay procesos que se podrían automatizar — pero no saben por dónde partir. Nosotros lo diagnosticamos e implementamos por ellos.
+                    <p className="text-lg md:text-2xl text-white/50 max-w-3xl leading-relaxed mb-12 font-light text-balance">
+                        {COPY.hero.subheadline}
                     </p>
 
                     <div className="flex flex-col sm:flex-row items-center gap-6">
-                        <PremiumButton href="https://calendly.com/eitan-eficcia/30min" variant="primary" className="h-14 px-10 text-base shadow-[0_0_40px_-5px_rgba(2,132,199,0.6)] border border-accent/20 bg-accent text-white hover:bg-accent/90" icon={<ArrowRight weight="bold" className="ml-2 w-5 h-5" />}>
-                            Agendar Llamada Gratuita
-                        </PremiumButton>
+                        <Link
+                            href="/quiz"
+                            className="group inline-flex items-center justify-center h-14 px-10 text-base font-medium rounded-full shadow-[0_0_40px_-5px_rgba(2,132,199,0.6)] border border-sky-500/20 bg-sky-600 text-white hover:bg-sky-500 transition-all duration-300"
+                        >
+                            {COPY.hero.cta_primary}
+                            <ArrowRight weight="bold" className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                        </Link>
                     </div>
                 </motion.div>
             </div>
