@@ -1,21 +1,21 @@
 const evidence = [
   {
-    value: "12",
-    title: "activaciones de 'Interesado (Asesor)'",
+    eyebrow: "Captura de demanda",
+    title: "Consultas y oportunidades ya entrando al sistema",
     body:
-      "Registradas en el export del 5 de abril de 2026 de CM&D. Es una señal operativa temprana de handoff comercial funcionando.",
+      "Ya hay flujos activos capturando intención comercial, ordenando consultas y dejando trazabilidad para seguimiento.",
   },
   {
-    value: "12",
-    title: "eventos AddToCart detectados",
+    eyebrow: "Automatización operativa",
+    title: "Procesos conectados para responder y derivar mejor",
     body:
-      "Visibles en el export del 5 de abril de 2026. Muestran que el flujo ya está capturando intención comercial y enviando señal útil al sistema.",
+      "La operación ya puede clasificar señales, activar handoff comercial y reducir trabajo manual en puntos críticos del proceso.",
   },
   {
-    value: "1",
-    title: "cliente con medición ya encendida",
+    eyebrow: "Medición y control",
+    title: "Eventos y señales útiles ya visibles para tomar decisiones",
     body:
-      "CM&D ya tiene el evento Lead visible en Meta vía Conversions API. No es un caso cerrado todavía, pero sí una implementación real operando.",
+      "No mostramos promesas vacías. Mostramos implementaciones donde la medición ya está encendida y la operación puede mejorar con datos.",
   },
 ];
 
@@ -31,8 +31,8 @@ export function Testimonials() {
           <br />en una implementación real.
         </h2>
         <p className="max-w-2xl text-white/55 leading-relaxed">
-          No mostramos ratings ni testimonios inventados. Mostramos señales concretas de lo que ya está operando
-          hoy en el primer cliente activo de Eficcia, con datos internos y etapa todavía temprana.
+          No mostramos ratings ni testimonios inventados. Mostramos señales generales del tipo de operación que ya
+          estamos ayudando a ordenar, medir y automatizar en implementaciones reales.
         </p>
       </div>
 
@@ -42,7 +42,9 @@ export function Testimonials() {
             key={item.title}
             className="border border-white/10 rounded-2xl p-6 bg-white/[0.02] text-left"
           >
-            <p className="text-5xl font-medium text-sky-400 tracking-tight mb-4">{item.value}</p>
+            <p className="text-xs font-semibold tracking-[2px] uppercase text-sky-400 mb-4">
+              {item.eyebrow}
+            </p>
             <p className="text-base font-medium text-white mb-2">{item.title}</p>
             <p className="text-white/55 leading-relaxed text-sm">{item.body}</p>
           </div>
