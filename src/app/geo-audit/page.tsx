@@ -1,5 +1,19 @@
 import fs from "fs";
 import path from "path";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "GEO Audit Dashboard",
+  description: "Panel interno de scoring GEO para Eficcia.",
+  robots: {
+    index: false,
+    follow: false,
+    googleBot: {
+      index: false,
+      follow: false,
+    },
+  },
+};
 
 interface CheckItem {
   label: string;

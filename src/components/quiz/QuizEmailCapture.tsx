@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { COPY } from "@/lib/copy";
-import { QuizAnswers, QuizResultType, QuizSubmitPayload } from "@/lib/types";
-import { EnvelopeSimple, ArrowRight, CircleNotch } from "@phosphor-icons/react";
+import { QuizAnswers, QuizResultType, QuizSubmitPayload, QuizSubmitResponse } from "@/lib/types";
+import { EnvelopeSimple, ArrowRight, CircleNotch, CheckCircle } from "@phosphor-icons/react";
 
 interface QuizEmailCaptureProps {
     answers: QuizAnswers;
@@ -27,12 +27,16 @@ export function QuizEmailCapture({ answers, resultado, onSubmit }: QuizEmailCapt
         setError("");
 
         try {
+            if (!answers.rubro || !answers.tamano || !answers.dolor || !answers.whatsapp) {
+                throw new Error("Faltan respuestas del diagnóstico. Inténtalo de nuevo.");
+            }
+
             const payload: QuizSubmitPayload = {
                 email,
-                rubro: answers.rubro as any,
-                tamano: answers.tamano as any,
-                dolor: answers.dolor as any,
-                whatsapp: answers.whatsapp as any,
+                rubro: answers.rubro,
+                tamano: answers.tamano,
+                dolor: answers.dolor,
+                whatsapp: answers.whatsapp,
                 resultado,
             };
 
@@ -42,14 +46,14 @@ export function QuizEmailCapture({ answers, resultado, onSubmit }: QuizEmailCapt
                 headers: { "Content-Type": "application/json" }
             });
 
-            const data = await res.json();
+            const data: QuizSubmitResponse = await res.json();
             if (!res.ok || !data.ok) {
                 throw new Error(data.error || "Hubo un error al guardar tu resultado.");
             }
 
             onSubmit();
-        } catch (err: any) {
-            setError(err.message || "Ocurrió un error inesperado.");
+        } catch (err) {
+            setError(err instanceof Error ? err.message : "Ocurrió un error inesperado.");
             setLoading(false);
         }
     };
@@ -72,6 +76,20 @@ export function QuizEmailCapture({ answers, resultado, onSubmit }: QuizEmailCapt
             <p className="text-lg text-white/50 mb-12 text-center max-w-md">
                 {copy.subpregunta}
             </p>
+
+            <div className="w-full mb-8 rounded-2xl border border-white/10 bg-white/[0.03] p-5">
+                <div className="flex flex-col gap-3 text-left">
+                    {copy.bullets?.map((item: string) => (
+                        <div key={item} className="flex items-start gap-3">
+                            <CheckCircle size={18} weight="fill" className="text-sky-400 shrink-0 mt-0.5" />
+                            <p className="text-sm text-white/70 leading-relaxed">{item}</p>
+                        </div>
+                    ))}
+                </div>
+                <p className="mt-4 text-xs text-white/40 text-left leading-relaxed">
+                    {copy.trust}
+                </p>
+            </div>
 
             <form onSubmit={handleSubmit} className="w-full flex flex-col gap-4">
                 <div className="relative w-full">

@@ -58,7 +58,7 @@ export const metadata: Metadata = {
     type: "website",
     images: [
       {
-        url: "/og-image.png",
+        url: "/og-image.svg",
         width: 1200,
         height: 630,
         alt: "Eficcia — IA para PYMEs en Chile",
@@ -69,7 +69,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Eficcia | IA para PYMEs en Chile",
     description: "Diagnóstico gratuito de IA en 2 minutos. Descubre exactamente qué automatizar.",
-    images: ["/og-image.png"],
+    images: ["/og-image.svg"],
   },
 };
 
@@ -81,11 +81,29 @@ const schemaOrg = {
       "@id": "https://www.eficcia.com/#organization",
       name: "Eficcia",
       url: "https://www.eficcia.com",
+      logo: "https://www.eficcia.com/logo.png",
+      image: "https://www.eficcia.com/og-image.svg",
       description:
         "Consultoría de inteligencia artificial para PYMEs. Diagnóstico, hoja de ruta e implementación de chatbots, automatizaciones y dashboards para empresas de 8 a 50 personas en Chile.",
       telephone: "+56954067166",
       email: "eitan@eseficcia.com",
       areaServed: "CL",
+      founder: {
+        "@id": "https://www.eficcia.com/#person-eitan",
+      },
+      sameAs: [
+        "https://www.linkedin.com/in/eitanmarkovits",
+      ],
+      contactPoint: [
+        {
+          "@type": "ContactPoint",
+          contactType: "sales",
+          telephone: "+56954067166",
+          email: "eitan@eseficcia.com",
+          areaServed: "CL",
+          availableLanguage: ["es-CL", "es"],
+        },
+      ],
       knowsAbout: [
         "Inteligencia Artificial",
         "Automatización de procesos",
@@ -126,11 +144,38 @@ const schemaOrg = {
       priceRange: "$$",
     },
     {
+      "@type": "Person",
+      "@id": "https://www.eficcia.com/#person-eitan",
+      name: "Eitan Markovits Haim",
+      jobTitle: "Fundador de Eficcia",
+      url: "https://www.eficcia.com",
+      image: "https://www.eficcia.com/og-image.svg",
+      sameAs: [
+        "https://www.linkedin.com/in/eitanmarkovits",
+      ],
+      worksFor: {
+        "@id": "https://www.eficcia.com/#organization",
+      },
+      knowsAbout: [
+        "Consultoría IA para PYMEs",
+        "Automatización de procesos",
+        "Chatbots empresariales",
+        "Seguimiento comercial",
+        "Dashboards operativos",
+      ],
+      address: {
+        "@type": "PostalAddress",
+        addressLocality: "Santiago",
+        addressCountry: "CL",
+      },
+    },
+    {
       "@type": "WebSite",
       "@id": "https://www.eficcia.com/#website",
       url: "https://www.eficcia.com",
       name: "Eficcia",
       publisher: { "@id": "https://www.eficcia.com/#organization" },
+      inLanguage: "es-CL",
     },
     {
       "@type": "Service",
@@ -151,46 +196,6 @@ const schemaOrg = {
         availability: "https://schema.org/InStock",
         description: "Diagnóstico gratuito sin compromiso",
       },
-    },
-    {
-      "@type": "Article",
-      "@id": "https://www.eficcia.com/#article",
-      headline: "IA para PYMEs en Chile — Diagnóstico Gratuito de Automatización",
-      description:
-        "Diagnóstico gratuito de inteligencia artificial para PYMEs chilenas. Identifica qué automatizar en tu empresa: chatbots, seguimiento de ventas o procesos administrativos.",
-      author: {
-        "@type": "Person",
-        name: "Eitan Markovits Haim",
-        url: "https://www.eficcia.com",
-      },
-      publisher: { "@id": "https://www.eficcia.com/#organization" },
-      datePublished: "2026-04-08",
-      dateModified: new Date().toISOString().split("T")[0],
-      inLanguage: "es-CL",
-      about: [
-        { "@type": "Thing", name: "Inteligencia Artificial para empresas" },
-        { "@type": "Thing", name: "Automatización de procesos" },
-        { "@type": "Thing", name: "Chatbots empresariales" },
-        { "@type": "Thing", name: "PYMEs Chile" },
-      ],
-    },
-    {
-      "@type": "BreadcrumbList",
-      "@id": "https://www.eficcia.com/#breadcrumb",
-      itemListElement: [
-        {
-          "@type": "ListItem",
-          position: 1,
-          name: "Inicio",
-          item: "https://www.eficcia.com",
-        },
-        {
-          "@type": "ListItem",
-          position: 2,
-          name: "Diagnóstico de IA",
-          item: "https://www.eficcia.com/quiz",
-        },
-      ],
     },
   ],
 };

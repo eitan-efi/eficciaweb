@@ -22,9 +22,25 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     openGraph: {
       title: post.titulo,
       description: post.descripcion,
+      url: `https://www.eficcia.com/blog/${post.slug}`,
       type: "article",
       publishedTime: post.fecha,
+      modifiedTime: post.fecha,
       authors: ["Eitan Markovits Haim"],
+      images: [
+        {
+          url: "/og-image.svg",
+          width: 1200,
+          height: 630,
+          alt: post.titulo,
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: post.titulo,
+      description: post.descripcion,
+      images: ["/og-image.svg"],
     },
   };
 }
@@ -110,24 +126,67 @@ export default async function BlogPostPage({ params }: Props) {
 
   const schema = {
     "@context": "https://schema.org",
-    "@type": "BlogPosting",
-    headline: post.titulo,
-    description: post.descripcion,
-    datePublished: post.fecha,
-    dateModified: post.fecha,
-    inLanguage: "es-CL",
-    author: {
-      "@type": "Person",
-      name: "Eitan Markovits Haim",
-      url: "https://www.eficcia.com",
-    },
-    publisher: {
-      "@type": "Organization",
-      name: "Eficcia",
-      url: "https://www.eficcia.com",
-    },
-    mainEntityOfPage: `https://www.eficcia.com/blog/${post.slug}`,
-    about: { "@type": "Thing", name: `IA para ${post.rubro} en Chile` },
+    "@graph": [
+      {
+        "@type": "BlogPosting",
+        "@id": `https://www.eficcia.com/blog/${post.slug}#article`,
+        headline: post.titulo,
+        description: post.descripcion,
+        datePublished: post.fecha,
+        dateModified: post.fecha,
+        inLanguage: "es-CL",
+        image: "https://www.eficcia.com/og-image.svg",
+        author: {
+          "@id": "https://www.eficcia.com/#person-eitan",
+        },
+        publisher: {
+          "@id": "https://www.eficcia.com/#organization",
+        },
+        mainEntityOfPage: {
+          "@id": `https://www.eficcia.com/blog/${post.slug}#webpage`,
+        },
+        about: { "@type": "Thing", name: `IA para ${post.rubro} en Chile` },
+        abstract: post.resumen.join(" "),
+      },
+      {
+        "@type": "WebPage",
+        "@id": `https://www.eficcia.com/blog/${post.slug}#webpage`,
+        url: `https://www.eficcia.com/blog/${post.slug}`,
+        name: post.titulo,
+        description: post.descripcion,
+        isPartOf: {
+          "@id": "https://www.eficcia.com/#website",
+        },
+        breadcrumb: {
+          "@id": `https://www.eficcia.com/blog/${post.slug}#breadcrumb`,
+        },
+        inLanguage: "es-CL",
+      },
+      {
+        "@type": "BreadcrumbList",
+        "@id": `https://www.eficcia.com/blog/${post.slug}#breadcrumb`,
+        itemListElement: [
+          {
+            "@type": "ListItem",
+            position: 1,
+            name: "Inicio",
+            item: "https://www.eficcia.com",
+          },
+          {
+            "@type": "ListItem",
+            position: 2,
+            name: "Blog",
+            item: "https://www.eficcia.com/blog",
+          },
+          {
+            "@type": "ListItem",
+            position: 3,
+            name: post.titulo,
+            item: `https://www.eficcia.com/blog/${post.slug}`,
+          },
+        ],
+      },
+    ],
   };
 
   return (
@@ -169,6 +228,20 @@ export default async function BlogPostPage({ params }: Props) {
         </header>
 
         <div className="h-px w-full bg-gradient-to-r from-transparent via-white/10 to-transparent mb-10" />
+
+        <section className="mb-10 rounded-2xl border border-sky-500/20 bg-sky-500/[0.06] p-6">
+          <p className="text-xs font-semibold tracking-[2px] uppercase text-sky-400 mb-4">
+            En resumen
+          </p>
+          <div className="space-y-3">
+            {post.resumen.map((item) => (
+              <div key={item} className="flex items-start gap-3 text-white/75">
+                <span className="mt-1 shrink-0 text-sky-400">•</span>
+                <p className="leading-relaxed">{item}</p>
+              </div>
+            ))}
+          </div>
+        </section>
 
         {/* Content */}
         <div>{post.contenido.map(renderSection)}</div>

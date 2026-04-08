@@ -919,5 +919,2765 @@
         }
       ]
     }
+  },
+  {
+    "runId": 4,
+    "date": "2026-04-08",
+    "changes": [
+      "agente-tecnico-1",
+      "asset OG real en public",
+      "metadata central apunta a og-image.svg existente"
+    ],
+    "scores": {
+      "technical": 9,
+      "schema": 8,
+      "content": 10,
+      "eeat": 10
+    },
+    "overall": 9.25,
+    "checks": {
+      "technical": [
+        {
+          "label": "robots.txt",
+          "pass": true,
+          "pts": 1.5,
+          "max": 1.5
+        },
+        {
+          "label": "sitemap.ts",
+          "pass": true,
+          "pts": 1.5,
+          "max": 1.5
+        },
+        {
+          "label": "canonical (alternates)",
+          "pass": true,
+          "pts": 1,
+          "max": 1
+        },
+        {
+          "label": "viewport export",
+          "pass": true,
+          "pts": 1,
+          "max": 1
+        },
+        {
+          "label": "OG image definida",
+          "pass": true,
+          "pts": 1,
+          "max": 1
+        },
+        {
+          "label": "title template %s",
+          "pass": true,
+          "pts": 0.5,
+          "max": 0.5
+        },
+        {
+          "label": "robots metadata",
+          "pass": true,
+          "pts": 0.5,
+          "max": 0.5
+        },
+        {
+          "label": "metadataBase",
+          "pass": true,
+          "pts": 0.5,
+          "max": 0.5
+        },
+        {
+          "label": "keywords",
+          "pass": true,
+          "pts": 0.5,
+          "max": 0.5
+        },
+        {
+          "label": "authors",
+          "pass": true,
+          "pts": 1,
+          "max": 1
+        }
+      ],
+      "schema": [
+        {
+          "label": "Organization",
+          "pass": true,
+          "pts": 0.5,
+          "max": 0.5
+        },
+        {
+          "label": "LocalBusiness",
+          "pass": true,
+          "pts": 0.5,
+          "max": 0.5
+        },
+        {
+          "label": "WebSite",
+          "pass": true,
+          "pts": 0.5,
+          "max": 0.5
+        },
+        {
+          "label": "FAQPage",
+          "pass": true,
+          "pts": 2,
+          "max": 2
+        },
+        {
+          "label": "Service",
+          "pass": true,
+          "pts": 2,
+          "max": 2
+        },
+        {
+          "label": "BreadcrumbList",
+          "pass": true,
+          "pts": 1,
+          "max": 1
+        },
+        {
+          "label": "Article/WebPage",
+          "pass": true,
+          "pts": 1.5,
+          "max": 1.5
+        },
+        {
+          "label": "AggregateRating",
+          "pass": false,
+          "pts": 0,
+          "max": 2
+        }
+      ],
+      "content": [
+        {
+          "label": "H1 en Hero",
+          "pass": true,
+          "pts": 1.5,
+          "max": 1.5
+        },
+        {
+          "label": "FAQ ≥5 items (14)",
+          "pass": true,
+          "pts": 1,
+          "max": 1
+        },
+        {
+          "label": "FAQ ≥8 items (14)",
+          "pass": true,
+          "pts": 1,
+          "max": 1
+        },
+        {
+          "label": "FAQ ≥12 items (14)",
+          "pass": true,
+          "pts": 1,
+          "max": 1
+        },
+        {
+          "label": "Blog /app/blog/",
+          "pass": true,
+          "pts": 2.5,
+          "max": 2.5
+        },
+        {
+          "label": "Stats y datos concretos",
+          "pass": true,
+          "pts": 1.5,
+          "max": 1.5
+        },
+        {
+          "label": "AboutEitan en page.tsx",
+          "pass": true,
+          "pts": 1.5,
+          "max": 1.5
+        }
+      ],
+      "eeat": [
+        {
+          "label": "Teléfono en schema",
+          "pass": true,
+          "pts": 1,
+          "max": 1
+        },
+        {
+          "label": "Email en schema",
+          "pass": true,
+          "pts": 1,
+          "max": 1
+        },
+        {
+          "label": "Dirección en schema",
+          "pass": true,
+          "pts": 1,
+          "max": 1
+        },
+        {
+          "label": "Horario en schema",
+          "pass": true,
+          "pts": 1,
+          "max": 1
+        },
+        {
+          "label": "Locale es_CL",
+          "pass": true,
+          "pts": 0.5,
+          "max": 0.5
+        },
+        {
+          "label": "AboutEitan visible",
+          "pass": true,
+          "pts": 2,
+          "max": 2
+        },
+        {
+          "label": "Testimonials component",
+          "pass": true,
+          "pts": 2,
+          "max": 2
+        },
+        {
+          "label": "Nombre autor (Eitan)",
+          "pass": true,
+          "pts": 0.5,
+          "max": 0.5
+        },
+        {
+          "label": "Authors en metadata",
+          "pass": true,
+          "pts": 1,
+          "max": 1
+        }
+      ]
+    }
+  },
+  {
+    "runId": 5,
+    "date": "2026-04-08",
+    "changes": [
+      "agente-tecnico-2",
+      "metadata propia y canonical para /quiz",
+      "WebPage y BreadcrumbList para la ruta del diagnóstico"
+    ],
+    "scores": {
+      "technical": 9,
+      "schema": 8,
+      "content": 10,
+      "eeat": 10
+    },
+    "overall": 9.25,
+    "checks": {
+      "technical": [
+        {
+          "label": "robots.txt",
+          "pass": true,
+          "pts": 1.5,
+          "max": 1.5
+        },
+        {
+          "label": "sitemap.ts",
+          "pass": true,
+          "pts": 1.5,
+          "max": 1.5
+        },
+        {
+          "label": "canonical (alternates)",
+          "pass": true,
+          "pts": 1,
+          "max": 1
+        },
+        {
+          "label": "viewport export",
+          "pass": true,
+          "pts": 1,
+          "max": 1
+        },
+        {
+          "label": "OG image definida",
+          "pass": true,
+          "pts": 1,
+          "max": 1
+        },
+        {
+          "label": "title template %s",
+          "pass": true,
+          "pts": 0.5,
+          "max": 0.5
+        },
+        {
+          "label": "robots metadata",
+          "pass": true,
+          "pts": 0.5,
+          "max": 0.5
+        },
+        {
+          "label": "metadataBase",
+          "pass": true,
+          "pts": 0.5,
+          "max": 0.5
+        },
+        {
+          "label": "keywords",
+          "pass": true,
+          "pts": 0.5,
+          "max": 0.5
+        },
+        {
+          "label": "authors",
+          "pass": true,
+          "pts": 1,
+          "max": 1
+        }
+      ],
+      "schema": [
+        {
+          "label": "Organization",
+          "pass": true,
+          "pts": 0.5,
+          "max": 0.5
+        },
+        {
+          "label": "LocalBusiness",
+          "pass": true,
+          "pts": 0.5,
+          "max": 0.5
+        },
+        {
+          "label": "WebSite",
+          "pass": true,
+          "pts": 0.5,
+          "max": 0.5
+        },
+        {
+          "label": "FAQPage",
+          "pass": true,
+          "pts": 2,
+          "max": 2
+        },
+        {
+          "label": "Service",
+          "pass": true,
+          "pts": 2,
+          "max": 2
+        },
+        {
+          "label": "BreadcrumbList",
+          "pass": true,
+          "pts": 1,
+          "max": 1
+        },
+        {
+          "label": "Article/WebPage",
+          "pass": true,
+          "pts": 1.5,
+          "max": 1.5
+        },
+        {
+          "label": "AggregateRating",
+          "pass": false,
+          "pts": 0,
+          "max": 2
+        }
+      ],
+      "content": [
+        {
+          "label": "H1 en Hero",
+          "pass": true,
+          "pts": 1.5,
+          "max": 1.5
+        },
+        {
+          "label": "FAQ ≥5 items (14)",
+          "pass": true,
+          "pts": 1,
+          "max": 1
+        },
+        {
+          "label": "FAQ ≥8 items (14)",
+          "pass": true,
+          "pts": 1,
+          "max": 1
+        },
+        {
+          "label": "FAQ ≥12 items (14)",
+          "pass": true,
+          "pts": 1,
+          "max": 1
+        },
+        {
+          "label": "Blog /app/blog/",
+          "pass": true,
+          "pts": 2.5,
+          "max": 2.5
+        },
+        {
+          "label": "Stats y datos concretos",
+          "pass": true,
+          "pts": 1.5,
+          "max": 1.5
+        },
+        {
+          "label": "AboutEitan en page.tsx",
+          "pass": true,
+          "pts": 1.5,
+          "max": 1.5
+        }
+      ],
+      "eeat": [
+        {
+          "label": "Teléfono en schema",
+          "pass": true,
+          "pts": 1,
+          "max": 1
+        },
+        {
+          "label": "Email en schema",
+          "pass": true,
+          "pts": 1,
+          "max": 1
+        },
+        {
+          "label": "Dirección en schema",
+          "pass": true,
+          "pts": 1,
+          "max": 1
+        },
+        {
+          "label": "Horario en schema",
+          "pass": true,
+          "pts": 1,
+          "max": 1
+        },
+        {
+          "label": "Locale es_CL",
+          "pass": true,
+          "pts": 0.5,
+          "max": 0.5
+        },
+        {
+          "label": "AboutEitan visible",
+          "pass": true,
+          "pts": 2,
+          "max": 2
+        },
+        {
+          "label": "Testimonials component",
+          "pass": true,
+          "pts": 2,
+          "max": 2
+        },
+        {
+          "label": "Nombre autor (Eitan)",
+          "pass": true,
+          "pts": 0.5,
+          "max": 0.5
+        },
+        {
+          "label": "Authors en metadata",
+          "pass": true,
+          "pts": 1,
+          "max": 1
+        }
+      ]
+    }
+  },
+  {
+    "runId": 6,
+    "date": "2026-04-08",
+    "changes": [
+      "R1 credibilidad de claims",
+      "proof strip con hechos verificables",
+      "outcomes con framing no absoluto"
+    ],
+    "scores": {
+      "technical": 9,
+      "schema": 8,
+      "content": 10,
+      "eeat": 10
+    },
+    "overall": 9.25,
+    "checks": {
+      "technical": [
+        {
+          "label": "robots.txt",
+          "pass": true,
+          "pts": 1.5,
+          "max": 1.5
+        },
+        {
+          "label": "sitemap.ts",
+          "pass": true,
+          "pts": 1.5,
+          "max": 1.5
+        },
+        {
+          "label": "canonical (alternates)",
+          "pass": true,
+          "pts": 1,
+          "max": 1
+        },
+        {
+          "label": "viewport export",
+          "pass": true,
+          "pts": 1,
+          "max": 1
+        },
+        {
+          "label": "OG image definida",
+          "pass": true,
+          "pts": 1,
+          "max": 1
+        },
+        {
+          "label": "title template %s",
+          "pass": true,
+          "pts": 0.5,
+          "max": 0.5
+        },
+        {
+          "label": "robots metadata",
+          "pass": true,
+          "pts": 0.5,
+          "max": 0.5
+        },
+        {
+          "label": "metadataBase",
+          "pass": true,
+          "pts": 0.5,
+          "max": 0.5
+        },
+        {
+          "label": "keywords",
+          "pass": true,
+          "pts": 0.5,
+          "max": 0.5
+        },
+        {
+          "label": "authors",
+          "pass": true,
+          "pts": 1,
+          "max": 1
+        }
+      ],
+      "schema": [
+        {
+          "label": "Organization",
+          "pass": true,
+          "pts": 0.5,
+          "max": 0.5
+        },
+        {
+          "label": "LocalBusiness",
+          "pass": true,
+          "pts": 0.5,
+          "max": 0.5
+        },
+        {
+          "label": "WebSite",
+          "pass": true,
+          "pts": 0.5,
+          "max": 0.5
+        },
+        {
+          "label": "FAQPage",
+          "pass": true,
+          "pts": 2,
+          "max": 2
+        },
+        {
+          "label": "Service",
+          "pass": true,
+          "pts": 2,
+          "max": 2
+        },
+        {
+          "label": "BreadcrumbList",
+          "pass": true,
+          "pts": 1,
+          "max": 1
+        },
+        {
+          "label": "Article/WebPage",
+          "pass": true,
+          "pts": 1.5,
+          "max": 1.5
+        },
+        {
+          "label": "AggregateRating",
+          "pass": false,
+          "pts": 0,
+          "max": 2
+        }
+      ],
+      "content": [
+        {
+          "label": "H1 en Hero",
+          "pass": true,
+          "pts": 1.5,
+          "max": 1.5
+        },
+        {
+          "label": "FAQ ≥5 items (14)",
+          "pass": true,
+          "pts": 1,
+          "max": 1
+        },
+        {
+          "label": "FAQ ≥8 items (14)",
+          "pass": true,
+          "pts": 1,
+          "max": 1
+        },
+        {
+          "label": "FAQ ≥12 items (14)",
+          "pass": true,
+          "pts": 1,
+          "max": 1
+        },
+        {
+          "label": "Blog /app/blog/",
+          "pass": true,
+          "pts": 2.5,
+          "max": 2.5
+        },
+        {
+          "label": "Stats y datos concretos",
+          "pass": true,
+          "pts": 1.5,
+          "max": 1.5
+        },
+        {
+          "label": "AboutEitan en page.tsx",
+          "pass": true,
+          "pts": 1.5,
+          "max": 1.5
+        }
+      ],
+      "eeat": [
+        {
+          "label": "Teléfono en schema",
+          "pass": true,
+          "pts": 1,
+          "max": 1
+        },
+        {
+          "label": "Email en schema",
+          "pass": true,
+          "pts": 1,
+          "max": 1
+        },
+        {
+          "label": "Dirección en schema",
+          "pass": true,
+          "pts": 1,
+          "max": 1
+        },
+        {
+          "label": "Horario en schema",
+          "pass": true,
+          "pts": 1,
+          "max": 1
+        },
+        {
+          "label": "Locale es_CL",
+          "pass": true,
+          "pts": 0.5,
+          "max": 0.5
+        },
+        {
+          "label": "AboutEitan visible",
+          "pass": true,
+          "pts": 2,
+          "max": 2
+        },
+        {
+          "label": "Testimonials component",
+          "pass": true,
+          "pts": 2,
+          "max": 2
+        },
+        {
+          "label": "Nombre autor (Eitan)",
+          "pass": true,
+          "pts": 0.5,
+          "max": 0.5
+        },
+        {
+          "label": "Authors en metadata",
+          "pass": true,
+          "pts": 1,
+          "max": 1
+        }
+      ]
+    }
+  },
+  {
+    "runId": 7,
+    "date": "2026-04-08",
+    "changes": [
+      "sanear componente Testimonials",
+      "quitar ratings y reviews inventadas",
+      "dejar placeholder honesto para casos reales"
+    ],
+    "scores": {
+      "technical": 9,
+      "schema": 8,
+      "content": 10,
+      "eeat": 10
+    },
+    "overall": 9.25,
+    "checks": {
+      "technical": [
+        {
+          "label": "robots.txt",
+          "pass": true,
+          "pts": 1.5,
+          "max": 1.5
+        },
+        {
+          "label": "sitemap.ts",
+          "pass": true,
+          "pts": 1.5,
+          "max": 1.5
+        },
+        {
+          "label": "canonical (alternates)",
+          "pass": true,
+          "pts": 1,
+          "max": 1
+        },
+        {
+          "label": "viewport export",
+          "pass": true,
+          "pts": 1,
+          "max": 1
+        },
+        {
+          "label": "OG image definida",
+          "pass": true,
+          "pts": 1,
+          "max": 1
+        },
+        {
+          "label": "title template %s",
+          "pass": true,
+          "pts": 0.5,
+          "max": 0.5
+        },
+        {
+          "label": "robots metadata",
+          "pass": true,
+          "pts": 0.5,
+          "max": 0.5
+        },
+        {
+          "label": "metadataBase",
+          "pass": true,
+          "pts": 0.5,
+          "max": 0.5
+        },
+        {
+          "label": "keywords",
+          "pass": true,
+          "pts": 0.5,
+          "max": 0.5
+        },
+        {
+          "label": "authors",
+          "pass": true,
+          "pts": 1,
+          "max": 1
+        }
+      ],
+      "schema": [
+        {
+          "label": "Organization",
+          "pass": true,
+          "pts": 0.5,
+          "max": 0.5
+        },
+        {
+          "label": "LocalBusiness",
+          "pass": true,
+          "pts": 0.5,
+          "max": 0.5
+        },
+        {
+          "label": "WebSite",
+          "pass": true,
+          "pts": 0.5,
+          "max": 0.5
+        },
+        {
+          "label": "FAQPage",
+          "pass": true,
+          "pts": 2,
+          "max": 2
+        },
+        {
+          "label": "Service",
+          "pass": true,
+          "pts": 2,
+          "max": 2
+        },
+        {
+          "label": "BreadcrumbList",
+          "pass": true,
+          "pts": 1,
+          "max": 1
+        },
+        {
+          "label": "Article/WebPage",
+          "pass": true,
+          "pts": 1.5,
+          "max": 1.5
+        },
+        {
+          "label": "AggregateRating",
+          "pass": false,
+          "pts": 0,
+          "max": 2
+        }
+      ],
+      "content": [
+        {
+          "label": "H1 en Hero",
+          "pass": true,
+          "pts": 1.5,
+          "max": 1.5
+        },
+        {
+          "label": "FAQ ≥5 items (14)",
+          "pass": true,
+          "pts": 1,
+          "max": 1
+        },
+        {
+          "label": "FAQ ≥8 items (14)",
+          "pass": true,
+          "pts": 1,
+          "max": 1
+        },
+        {
+          "label": "FAQ ≥12 items (14)",
+          "pass": true,
+          "pts": 1,
+          "max": 1
+        },
+        {
+          "label": "Blog /app/blog/",
+          "pass": true,
+          "pts": 2.5,
+          "max": 2.5
+        },
+        {
+          "label": "Stats y datos concretos",
+          "pass": true,
+          "pts": 1.5,
+          "max": 1.5
+        },
+        {
+          "label": "AboutEitan en page.tsx",
+          "pass": true,
+          "pts": 1.5,
+          "max": 1.5
+        }
+      ],
+      "eeat": [
+        {
+          "label": "Teléfono en schema",
+          "pass": true,
+          "pts": 1,
+          "max": 1
+        },
+        {
+          "label": "Email en schema",
+          "pass": true,
+          "pts": 1,
+          "max": 1
+        },
+        {
+          "label": "Dirección en schema",
+          "pass": true,
+          "pts": 1,
+          "max": 1
+        },
+        {
+          "label": "Horario en schema",
+          "pass": true,
+          "pts": 1,
+          "max": 1
+        },
+        {
+          "label": "Locale es_CL",
+          "pass": true,
+          "pts": 0.5,
+          "max": 0.5
+        },
+        {
+          "label": "AboutEitan visible",
+          "pass": true,
+          "pts": 2,
+          "max": 2
+        },
+        {
+          "label": "Testimonials component",
+          "pass": true,
+          "pts": 2,
+          "max": 2
+        },
+        {
+          "label": "Nombre autor (Eitan)",
+          "pass": true,
+          "pts": 0.5,
+          "max": 0.5
+        },
+        {
+          "label": "Authors en metadata",
+          "pass": true,
+          "pts": 1,
+          "max": 1
+        }
+      ]
+    }
+  },
+  {
+    "runId": 8,
+    "date": "2026-04-08",
+    "changes": [
+      "agente-schema-1",
+      "graph con Person y founder",
+      "Organization enriquecida con sameAs y ContactPoint reales"
+    ],
+    "scores": {
+      "technical": 9,
+      "schema": 8,
+      "content": 10,
+      "eeat": 10
+    },
+    "overall": 9.25,
+    "checks": {
+      "technical": [
+        {
+          "label": "robots.txt",
+          "pass": true,
+          "pts": 1.5,
+          "max": 1.5
+        },
+        {
+          "label": "sitemap.ts",
+          "pass": true,
+          "pts": 1.5,
+          "max": 1.5
+        },
+        {
+          "label": "canonical (alternates)",
+          "pass": true,
+          "pts": 1,
+          "max": 1
+        },
+        {
+          "label": "viewport export",
+          "pass": true,
+          "pts": 1,
+          "max": 1
+        },
+        {
+          "label": "OG image definida",
+          "pass": true,
+          "pts": 1,
+          "max": 1
+        },
+        {
+          "label": "title template %s",
+          "pass": true,
+          "pts": 0.5,
+          "max": 0.5
+        },
+        {
+          "label": "robots metadata",
+          "pass": true,
+          "pts": 0.5,
+          "max": 0.5
+        },
+        {
+          "label": "metadataBase",
+          "pass": true,
+          "pts": 0.5,
+          "max": 0.5
+        },
+        {
+          "label": "keywords",
+          "pass": true,
+          "pts": 0.5,
+          "max": 0.5
+        },
+        {
+          "label": "authors",
+          "pass": true,
+          "pts": 1,
+          "max": 1
+        }
+      ],
+      "schema": [
+        {
+          "label": "Organization",
+          "pass": true,
+          "pts": 0.5,
+          "max": 0.5
+        },
+        {
+          "label": "LocalBusiness",
+          "pass": true,
+          "pts": 0.5,
+          "max": 0.5
+        },
+        {
+          "label": "WebSite",
+          "pass": true,
+          "pts": 0.5,
+          "max": 0.5
+        },
+        {
+          "label": "FAQPage",
+          "pass": true,
+          "pts": 2,
+          "max": 2
+        },
+        {
+          "label": "Service",
+          "pass": true,
+          "pts": 2,
+          "max": 2
+        },
+        {
+          "label": "BreadcrumbList",
+          "pass": true,
+          "pts": 1,
+          "max": 1
+        },
+        {
+          "label": "Article/WebPage",
+          "pass": true,
+          "pts": 1.5,
+          "max": 1.5
+        },
+        {
+          "label": "AggregateRating",
+          "pass": false,
+          "pts": 0,
+          "max": 2
+        }
+      ],
+      "content": [
+        {
+          "label": "H1 en Hero",
+          "pass": true,
+          "pts": 1.5,
+          "max": 1.5
+        },
+        {
+          "label": "FAQ ≥5 items (14)",
+          "pass": true,
+          "pts": 1,
+          "max": 1
+        },
+        {
+          "label": "FAQ ≥8 items (14)",
+          "pass": true,
+          "pts": 1,
+          "max": 1
+        },
+        {
+          "label": "FAQ ≥12 items (14)",
+          "pass": true,
+          "pts": 1,
+          "max": 1
+        },
+        {
+          "label": "Blog /app/blog/",
+          "pass": true,
+          "pts": 2.5,
+          "max": 2.5
+        },
+        {
+          "label": "Stats y datos concretos",
+          "pass": true,
+          "pts": 1.5,
+          "max": 1.5
+        },
+        {
+          "label": "AboutEitan en page.tsx",
+          "pass": true,
+          "pts": 1.5,
+          "max": 1.5
+        }
+      ],
+      "eeat": [
+        {
+          "label": "Teléfono en schema",
+          "pass": true,
+          "pts": 1,
+          "max": 1
+        },
+        {
+          "label": "Email en schema",
+          "pass": true,
+          "pts": 1,
+          "max": 1
+        },
+        {
+          "label": "Dirección en schema",
+          "pass": true,
+          "pts": 1,
+          "max": 1
+        },
+        {
+          "label": "Horario en schema",
+          "pass": true,
+          "pts": 1,
+          "max": 1
+        },
+        {
+          "label": "Locale es_CL",
+          "pass": true,
+          "pts": 0.5,
+          "max": 0.5
+        },
+        {
+          "label": "AboutEitan visible",
+          "pass": true,
+          "pts": 2,
+          "max": 2
+        },
+        {
+          "label": "Testimonials component",
+          "pass": true,
+          "pts": 2,
+          "max": 2
+        },
+        {
+          "label": "Nombre autor (Eitan)",
+          "pass": true,
+          "pts": 0.5,
+          "max": 0.5
+        },
+        {
+          "label": "Authors en metadata",
+          "pass": true,
+          "pts": 1,
+          "max": 1
+        }
+      ]
+    }
+  },
+  {
+    "runId": 9,
+    "date": "2026-04-08",
+    "changes": [
+      "R2 evidencia operativa real",
+      "bloque visible con datos tempranos de CM&D",
+      "sin ratings ni testimonios inventados"
+    ],
+    "scores": {
+      "technical": 9,
+      "schema": 8,
+      "content": 10,
+      "eeat": 10
+    },
+    "overall": 9.25,
+    "checks": {
+      "technical": [
+        {
+          "label": "robots.txt",
+          "pass": true,
+          "pts": 1.5,
+          "max": 1.5
+        },
+        {
+          "label": "sitemap.ts",
+          "pass": true,
+          "pts": 1.5,
+          "max": 1.5
+        },
+        {
+          "label": "canonical (alternates)",
+          "pass": true,
+          "pts": 1,
+          "max": 1
+        },
+        {
+          "label": "viewport export",
+          "pass": true,
+          "pts": 1,
+          "max": 1
+        },
+        {
+          "label": "OG image definida",
+          "pass": true,
+          "pts": 1,
+          "max": 1
+        },
+        {
+          "label": "title template %s",
+          "pass": true,
+          "pts": 0.5,
+          "max": 0.5
+        },
+        {
+          "label": "robots metadata",
+          "pass": true,
+          "pts": 0.5,
+          "max": 0.5
+        },
+        {
+          "label": "metadataBase",
+          "pass": true,
+          "pts": 0.5,
+          "max": 0.5
+        },
+        {
+          "label": "keywords",
+          "pass": true,
+          "pts": 0.5,
+          "max": 0.5
+        },
+        {
+          "label": "authors",
+          "pass": true,
+          "pts": 1,
+          "max": 1
+        }
+      ],
+      "schema": [
+        {
+          "label": "Organization",
+          "pass": true,
+          "pts": 0.5,
+          "max": 0.5
+        },
+        {
+          "label": "LocalBusiness",
+          "pass": true,
+          "pts": 0.5,
+          "max": 0.5
+        },
+        {
+          "label": "WebSite",
+          "pass": true,
+          "pts": 0.5,
+          "max": 0.5
+        },
+        {
+          "label": "FAQPage",
+          "pass": true,
+          "pts": 2,
+          "max": 2
+        },
+        {
+          "label": "Service",
+          "pass": true,
+          "pts": 2,
+          "max": 2
+        },
+        {
+          "label": "BreadcrumbList",
+          "pass": true,
+          "pts": 1,
+          "max": 1
+        },
+        {
+          "label": "Article/WebPage",
+          "pass": true,
+          "pts": 1.5,
+          "max": 1.5
+        },
+        {
+          "label": "AggregateRating",
+          "pass": false,
+          "pts": 0,
+          "max": 2
+        }
+      ],
+      "content": [
+        {
+          "label": "H1 en Hero",
+          "pass": true,
+          "pts": 1.5,
+          "max": 1.5
+        },
+        {
+          "label": "FAQ ≥5 items (14)",
+          "pass": true,
+          "pts": 1,
+          "max": 1
+        },
+        {
+          "label": "FAQ ≥8 items (14)",
+          "pass": true,
+          "pts": 1,
+          "max": 1
+        },
+        {
+          "label": "FAQ ≥12 items (14)",
+          "pass": true,
+          "pts": 1,
+          "max": 1
+        },
+        {
+          "label": "Blog /app/blog/",
+          "pass": true,
+          "pts": 2.5,
+          "max": 2.5
+        },
+        {
+          "label": "Stats y datos concretos",
+          "pass": true,
+          "pts": 1.5,
+          "max": 1.5
+        },
+        {
+          "label": "AboutEitan en page.tsx",
+          "pass": true,
+          "pts": 1.5,
+          "max": 1.5
+        }
+      ],
+      "eeat": [
+        {
+          "label": "Teléfono en schema",
+          "pass": true,
+          "pts": 1,
+          "max": 1
+        },
+        {
+          "label": "Email en schema",
+          "pass": true,
+          "pts": 1,
+          "max": 1
+        },
+        {
+          "label": "Dirección en schema",
+          "pass": true,
+          "pts": 1,
+          "max": 1
+        },
+        {
+          "label": "Horario en schema",
+          "pass": true,
+          "pts": 1,
+          "max": 1
+        },
+        {
+          "label": "Locale es_CL",
+          "pass": true,
+          "pts": 0.5,
+          "max": 0.5
+        },
+        {
+          "label": "AboutEitan visible",
+          "pass": true,
+          "pts": 2,
+          "max": 2
+        },
+        {
+          "label": "Testimonials component",
+          "pass": true,
+          "pts": 2,
+          "max": 2
+        },
+        {
+          "label": "Nombre autor (Eitan)",
+          "pass": true,
+          "pts": 0.5,
+          "max": 0.5
+        },
+        {
+          "label": "Authors en metadata",
+          "pass": true,
+          "pts": 1,
+          "max": 1
+        }
+      ]
+    }
+  },
+  {
+    "runId": 10,
+    "date": "2026-04-08",
+    "changes": [
+      "agente-contenido-1",
+      "CollectionPage e ItemList para /blog",
+      "CTA editorial que conecta blog y diagnóstico"
+    ],
+    "scores": {
+      "technical": 9,
+      "schema": 8,
+      "content": 10,
+      "eeat": 10
+    },
+    "overall": 9.25,
+    "checks": {
+      "technical": [
+        {
+          "label": "robots.txt",
+          "pass": true,
+          "pts": 1.5,
+          "max": 1.5
+        },
+        {
+          "label": "sitemap.ts",
+          "pass": true,
+          "pts": 1.5,
+          "max": 1.5
+        },
+        {
+          "label": "canonical (alternates)",
+          "pass": true,
+          "pts": 1,
+          "max": 1
+        },
+        {
+          "label": "viewport export",
+          "pass": true,
+          "pts": 1,
+          "max": 1
+        },
+        {
+          "label": "OG image definida",
+          "pass": true,
+          "pts": 1,
+          "max": 1
+        },
+        {
+          "label": "title template %s",
+          "pass": true,
+          "pts": 0.5,
+          "max": 0.5
+        },
+        {
+          "label": "robots metadata",
+          "pass": true,
+          "pts": 0.5,
+          "max": 0.5
+        },
+        {
+          "label": "metadataBase",
+          "pass": true,
+          "pts": 0.5,
+          "max": 0.5
+        },
+        {
+          "label": "keywords",
+          "pass": true,
+          "pts": 0.5,
+          "max": 0.5
+        },
+        {
+          "label": "authors",
+          "pass": true,
+          "pts": 1,
+          "max": 1
+        }
+      ],
+      "schema": [
+        {
+          "label": "Organization",
+          "pass": true,
+          "pts": 0.5,
+          "max": 0.5
+        },
+        {
+          "label": "LocalBusiness",
+          "pass": true,
+          "pts": 0.5,
+          "max": 0.5
+        },
+        {
+          "label": "WebSite",
+          "pass": true,
+          "pts": 0.5,
+          "max": 0.5
+        },
+        {
+          "label": "FAQPage",
+          "pass": true,
+          "pts": 2,
+          "max": 2
+        },
+        {
+          "label": "Service",
+          "pass": true,
+          "pts": 2,
+          "max": 2
+        },
+        {
+          "label": "BreadcrumbList",
+          "pass": true,
+          "pts": 1,
+          "max": 1
+        },
+        {
+          "label": "Article/WebPage",
+          "pass": true,
+          "pts": 1.5,
+          "max": 1.5
+        },
+        {
+          "label": "AggregateRating",
+          "pass": false,
+          "pts": 0,
+          "max": 2
+        }
+      ],
+      "content": [
+        {
+          "label": "H1 en Hero",
+          "pass": true,
+          "pts": 1.5,
+          "max": 1.5
+        },
+        {
+          "label": "FAQ ≥5 items (14)",
+          "pass": true,
+          "pts": 1,
+          "max": 1
+        },
+        {
+          "label": "FAQ ≥8 items (14)",
+          "pass": true,
+          "pts": 1,
+          "max": 1
+        },
+        {
+          "label": "FAQ ≥12 items (14)",
+          "pass": true,
+          "pts": 1,
+          "max": 1
+        },
+        {
+          "label": "Blog /app/blog/",
+          "pass": true,
+          "pts": 2.5,
+          "max": 2.5
+        },
+        {
+          "label": "Stats y datos concretos",
+          "pass": true,
+          "pts": 1.5,
+          "max": 1.5
+        },
+        {
+          "label": "AboutEitan en page.tsx",
+          "pass": true,
+          "pts": 1.5,
+          "max": 1.5
+        }
+      ],
+      "eeat": [
+        {
+          "label": "Teléfono en schema",
+          "pass": true,
+          "pts": 1,
+          "max": 1
+        },
+        {
+          "label": "Email en schema",
+          "pass": true,
+          "pts": 1,
+          "max": 1
+        },
+        {
+          "label": "Dirección en schema",
+          "pass": true,
+          "pts": 1,
+          "max": 1
+        },
+        {
+          "label": "Horario en schema",
+          "pass": true,
+          "pts": 1,
+          "max": 1
+        },
+        {
+          "label": "Locale es_CL",
+          "pass": true,
+          "pts": 0.5,
+          "max": 0.5
+        },
+        {
+          "label": "AboutEitan visible",
+          "pass": true,
+          "pts": 2,
+          "max": 2
+        },
+        {
+          "label": "Testimonials component",
+          "pass": true,
+          "pts": 2,
+          "max": 2
+        },
+        {
+          "label": "Nombre autor (Eitan)",
+          "pass": true,
+          "pts": 0.5,
+          "max": 0.5
+        },
+        {
+          "label": "Authors en metadata",
+          "pass": true,
+          "pts": 1,
+          "max": 1
+        }
+      ]
+    }
+  },
+  {
+    "runId": 11,
+    "date": "2026-04-08",
+    "changes": [
+      "R3 quiz trust capture",
+      "email step con expectativa clara",
+      "nota de privacidad y entregable"
+    ],
+    "scores": {
+      "technical": 9,
+      "schema": 8,
+      "content": 10,
+      "eeat": 10
+    },
+    "overall": 9.25,
+    "checks": {
+      "technical": [
+        {
+          "label": "robots.txt",
+          "pass": true,
+          "pts": 1.5,
+          "max": 1.5
+        },
+        {
+          "label": "sitemap.ts",
+          "pass": true,
+          "pts": 1.5,
+          "max": 1.5
+        },
+        {
+          "label": "canonical (alternates)",
+          "pass": true,
+          "pts": 1,
+          "max": 1
+        },
+        {
+          "label": "viewport export",
+          "pass": true,
+          "pts": 1,
+          "max": 1
+        },
+        {
+          "label": "OG image definida",
+          "pass": true,
+          "pts": 1,
+          "max": 1
+        },
+        {
+          "label": "title template %s",
+          "pass": true,
+          "pts": 0.5,
+          "max": 0.5
+        },
+        {
+          "label": "robots metadata",
+          "pass": true,
+          "pts": 0.5,
+          "max": 0.5
+        },
+        {
+          "label": "metadataBase",
+          "pass": true,
+          "pts": 0.5,
+          "max": 0.5
+        },
+        {
+          "label": "keywords",
+          "pass": true,
+          "pts": 0.5,
+          "max": 0.5
+        },
+        {
+          "label": "authors",
+          "pass": true,
+          "pts": 1,
+          "max": 1
+        }
+      ],
+      "schema": [
+        {
+          "label": "Organization",
+          "pass": true,
+          "pts": 0.5,
+          "max": 0.5
+        },
+        {
+          "label": "LocalBusiness",
+          "pass": true,
+          "pts": 0.5,
+          "max": 0.5
+        },
+        {
+          "label": "WebSite",
+          "pass": true,
+          "pts": 0.5,
+          "max": 0.5
+        },
+        {
+          "label": "FAQPage",
+          "pass": true,
+          "pts": 2,
+          "max": 2
+        },
+        {
+          "label": "Service",
+          "pass": true,
+          "pts": 2,
+          "max": 2
+        },
+        {
+          "label": "BreadcrumbList",
+          "pass": true,
+          "pts": 1,
+          "max": 1
+        },
+        {
+          "label": "Article/WebPage",
+          "pass": true,
+          "pts": 1.5,
+          "max": 1.5
+        },
+        {
+          "label": "AggregateRating",
+          "pass": false,
+          "pts": 0,
+          "max": 2
+        }
+      ],
+      "content": [
+        {
+          "label": "H1 en Hero",
+          "pass": true,
+          "pts": 1.5,
+          "max": 1.5
+        },
+        {
+          "label": "FAQ ≥5 items (14)",
+          "pass": true,
+          "pts": 1,
+          "max": 1
+        },
+        {
+          "label": "FAQ ≥8 items (14)",
+          "pass": true,
+          "pts": 1,
+          "max": 1
+        },
+        {
+          "label": "FAQ ≥12 items (14)",
+          "pass": true,
+          "pts": 1,
+          "max": 1
+        },
+        {
+          "label": "Blog /app/blog/",
+          "pass": true,
+          "pts": 2.5,
+          "max": 2.5
+        },
+        {
+          "label": "Stats y datos concretos",
+          "pass": true,
+          "pts": 1.5,
+          "max": 1.5
+        },
+        {
+          "label": "AboutEitan en page.tsx",
+          "pass": true,
+          "pts": 1.5,
+          "max": 1.5
+        }
+      ],
+      "eeat": [
+        {
+          "label": "Teléfono en schema",
+          "pass": true,
+          "pts": 1,
+          "max": 1
+        },
+        {
+          "label": "Email en schema",
+          "pass": true,
+          "pts": 1,
+          "max": 1
+        },
+        {
+          "label": "Dirección en schema",
+          "pass": true,
+          "pts": 1,
+          "max": 1
+        },
+        {
+          "label": "Horario en schema",
+          "pass": true,
+          "pts": 1,
+          "max": 1
+        },
+        {
+          "label": "Locale es_CL",
+          "pass": true,
+          "pts": 0.5,
+          "max": 0.5
+        },
+        {
+          "label": "AboutEitan visible",
+          "pass": true,
+          "pts": 2,
+          "max": 2
+        },
+        {
+          "label": "Testimonials component",
+          "pass": true,
+          "pts": 2,
+          "max": 2
+        },
+        {
+          "label": "Nombre autor (Eitan)",
+          "pass": true,
+          "pts": 0.5,
+          "max": 0.5
+        },
+        {
+          "label": "Authors en metadata",
+          "pass": true,
+          "pts": 1,
+          "max": 1
+        }
+      ]
+    }
+  },
+  {
+    "runId": 12,
+    "date": "2026-04-08",
+    "changes": [
+      "agente-schema-2",
+      "BlogPosting unido a WebPage y BreadcrumbList por artículo",
+      "OG/Twitter consistentes en posts"
+    ],
+    "scores": {
+      "technical": 9,
+      "schema": 8,
+      "content": 10,
+      "eeat": 10
+    },
+    "overall": 9.25,
+    "checks": {
+      "technical": [
+        {
+          "label": "robots.txt",
+          "pass": true,
+          "pts": 1.5,
+          "max": 1.5
+        },
+        {
+          "label": "sitemap.ts",
+          "pass": true,
+          "pts": 1.5,
+          "max": 1.5
+        },
+        {
+          "label": "canonical (alternates)",
+          "pass": true,
+          "pts": 1,
+          "max": 1
+        },
+        {
+          "label": "viewport export",
+          "pass": true,
+          "pts": 1,
+          "max": 1
+        },
+        {
+          "label": "OG image definida",
+          "pass": true,
+          "pts": 1,
+          "max": 1
+        },
+        {
+          "label": "title template %s",
+          "pass": true,
+          "pts": 0.5,
+          "max": 0.5
+        },
+        {
+          "label": "robots metadata",
+          "pass": true,
+          "pts": 0.5,
+          "max": 0.5
+        },
+        {
+          "label": "metadataBase",
+          "pass": true,
+          "pts": 0.5,
+          "max": 0.5
+        },
+        {
+          "label": "keywords",
+          "pass": true,
+          "pts": 0.5,
+          "max": 0.5
+        },
+        {
+          "label": "authors",
+          "pass": true,
+          "pts": 1,
+          "max": 1
+        }
+      ],
+      "schema": [
+        {
+          "label": "Organization",
+          "pass": true,
+          "pts": 0.5,
+          "max": 0.5
+        },
+        {
+          "label": "LocalBusiness",
+          "pass": true,
+          "pts": 0.5,
+          "max": 0.5
+        },
+        {
+          "label": "WebSite",
+          "pass": true,
+          "pts": 0.5,
+          "max": 0.5
+        },
+        {
+          "label": "FAQPage",
+          "pass": true,
+          "pts": 2,
+          "max": 2
+        },
+        {
+          "label": "Service",
+          "pass": true,
+          "pts": 2,
+          "max": 2
+        },
+        {
+          "label": "BreadcrumbList",
+          "pass": true,
+          "pts": 1,
+          "max": 1
+        },
+        {
+          "label": "Article/WebPage",
+          "pass": true,
+          "pts": 1.5,
+          "max": 1.5
+        },
+        {
+          "label": "AggregateRating",
+          "pass": false,
+          "pts": 0,
+          "max": 2
+        }
+      ],
+      "content": [
+        {
+          "label": "H1 en Hero",
+          "pass": true,
+          "pts": 1.5,
+          "max": 1.5
+        },
+        {
+          "label": "FAQ ≥5 items (14)",
+          "pass": true,
+          "pts": 1,
+          "max": 1
+        },
+        {
+          "label": "FAQ ≥8 items (14)",
+          "pass": true,
+          "pts": 1,
+          "max": 1
+        },
+        {
+          "label": "FAQ ≥12 items (14)",
+          "pass": true,
+          "pts": 1,
+          "max": 1
+        },
+        {
+          "label": "Blog /app/blog/",
+          "pass": true,
+          "pts": 2.5,
+          "max": 2.5
+        },
+        {
+          "label": "Stats y datos concretos",
+          "pass": true,
+          "pts": 1.5,
+          "max": 1.5
+        },
+        {
+          "label": "AboutEitan en page.tsx",
+          "pass": true,
+          "pts": 1.5,
+          "max": 1.5
+        }
+      ],
+      "eeat": [
+        {
+          "label": "Teléfono en schema",
+          "pass": true,
+          "pts": 1,
+          "max": 1
+        },
+        {
+          "label": "Email en schema",
+          "pass": true,
+          "pts": 1,
+          "max": 1
+        },
+        {
+          "label": "Dirección en schema",
+          "pass": true,
+          "pts": 1,
+          "max": 1
+        },
+        {
+          "label": "Horario en schema",
+          "pass": true,
+          "pts": 1,
+          "max": 1
+        },
+        {
+          "label": "Locale es_CL",
+          "pass": true,
+          "pts": 0.5,
+          "max": 0.5
+        },
+        {
+          "label": "AboutEitan visible",
+          "pass": true,
+          "pts": 2,
+          "max": 2
+        },
+        {
+          "label": "Testimonials component",
+          "pass": true,
+          "pts": 2,
+          "max": 2
+        },
+        {
+          "label": "Nombre autor (Eitan)",
+          "pass": true,
+          "pts": 0.5,
+          "max": 0.5
+        },
+        {
+          "label": "Authors en metadata",
+          "pass": true,
+          "pts": 1,
+          "max": 1
+        }
+      ]
+    }
+  },
+  {
+    "runId": 13,
+    "date": "2026-04-08",
+    "changes": [
+      "R4 consistencia comercial del resultado",
+      "CTA explicado",
+      "llamada presentada como revision util"
+    ],
+    "scores": {
+      "technical": 9,
+      "schema": 8,
+      "content": 10,
+      "eeat": 10
+    },
+    "overall": 9.25,
+    "checks": {
+      "technical": [
+        {
+          "label": "robots.txt",
+          "pass": true,
+          "pts": 1.5,
+          "max": 1.5
+        },
+        {
+          "label": "sitemap.ts",
+          "pass": true,
+          "pts": 1.5,
+          "max": 1.5
+        },
+        {
+          "label": "canonical (alternates)",
+          "pass": true,
+          "pts": 1,
+          "max": 1
+        },
+        {
+          "label": "viewport export",
+          "pass": true,
+          "pts": 1,
+          "max": 1
+        },
+        {
+          "label": "OG image definida",
+          "pass": true,
+          "pts": 1,
+          "max": 1
+        },
+        {
+          "label": "title template %s",
+          "pass": true,
+          "pts": 0.5,
+          "max": 0.5
+        },
+        {
+          "label": "robots metadata",
+          "pass": true,
+          "pts": 0.5,
+          "max": 0.5
+        },
+        {
+          "label": "metadataBase",
+          "pass": true,
+          "pts": 0.5,
+          "max": 0.5
+        },
+        {
+          "label": "keywords",
+          "pass": true,
+          "pts": 0.5,
+          "max": 0.5
+        },
+        {
+          "label": "authors",
+          "pass": true,
+          "pts": 1,
+          "max": 1
+        }
+      ],
+      "schema": [
+        {
+          "label": "Organization",
+          "pass": true,
+          "pts": 0.5,
+          "max": 0.5
+        },
+        {
+          "label": "LocalBusiness",
+          "pass": true,
+          "pts": 0.5,
+          "max": 0.5
+        },
+        {
+          "label": "WebSite",
+          "pass": true,
+          "pts": 0.5,
+          "max": 0.5
+        },
+        {
+          "label": "FAQPage",
+          "pass": true,
+          "pts": 2,
+          "max": 2
+        },
+        {
+          "label": "Service",
+          "pass": true,
+          "pts": 2,
+          "max": 2
+        },
+        {
+          "label": "BreadcrumbList",
+          "pass": true,
+          "pts": 1,
+          "max": 1
+        },
+        {
+          "label": "Article/WebPage",
+          "pass": true,
+          "pts": 1.5,
+          "max": 1.5
+        },
+        {
+          "label": "AggregateRating",
+          "pass": false,
+          "pts": 0,
+          "max": 2
+        }
+      ],
+      "content": [
+        {
+          "label": "H1 en Hero",
+          "pass": true,
+          "pts": 1.5,
+          "max": 1.5
+        },
+        {
+          "label": "FAQ ≥5 items (14)",
+          "pass": true,
+          "pts": 1,
+          "max": 1
+        },
+        {
+          "label": "FAQ ≥8 items (14)",
+          "pass": true,
+          "pts": 1,
+          "max": 1
+        },
+        {
+          "label": "FAQ ≥12 items (14)",
+          "pass": true,
+          "pts": 1,
+          "max": 1
+        },
+        {
+          "label": "Blog /app/blog/",
+          "pass": true,
+          "pts": 2.5,
+          "max": 2.5
+        },
+        {
+          "label": "Stats y datos concretos",
+          "pass": true,
+          "pts": 1.5,
+          "max": 1.5
+        },
+        {
+          "label": "AboutEitan en page.tsx",
+          "pass": true,
+          "pts": 1.5,
+          "max": 1.5
+        }
+      ],
+      "eeat": [
+        {
+          "label": "Teléfono en schema",
+          "pass": true,
+          "pts": 1,
+          "max": 1
+        },
+        {
+          "label": "Email en schema",
+          "pass": true,
+          "pts": 1,
+          "max": 1
+        },
+        {
+          "label": "Dirección en schema",
+          "pass": true,
+          "pts": 1,
+          "max": 1
+        },
+        {
+          "label": "Horario en schema",
+          "pass": true,
+          "pts": 1,
+          "max": 1
+        },
+        {
+          "label": "Locale es_CL",
+          "pass": true,
+          "pts": 0.5,
+          "max": 0.5
+        },
+        {
+          "label": "AboutEitan visible",
+          "pass": true,
+          "pts": 2,
+          "max": 2
+        },
+        {
+          "label": "Testimonials component",
+          "pass": true,
+          "pts": 2,
+          "max": 2
+        },
+        {
+          "label": "Nombre autor (Eitan)",
+          "pass": true,
+          "pts": 0.5,
+          "max": 0.5
+        },
+        {
+          "label": "Authors en metadata",
+          "pass": true,
+          "pts": 1,
+          "max": 1
+        }
+      ]
+    }
+  },
+  {
+    "runId": 14,
+    "date": "2026-04-08",
+    "changes": [
+      "activar OG image real",
+      "apuntar metadata y schema a asset existente",
+      "corregir inconsistencia de social preview"
+    ],
+    "scores": {
+      "technical": 9,
+      "schema": 8,
+      "content": 10,
+      "eeat": 10
+    },
+    "overall": 9.25,
+    "checks": {
+      "technical": [
+        {
+          "label": "robots.txt",
+          "pass": true,
+          "pts": 1.5,
+          "max": 1.5
+        },
+        {
+          "label": "sitemap.ts",
+          "pass": true,
+          "pts": 1.5,
+          "max": 1.5
+        },
+        {
+          "label": "canonical (alternates)",
+          "pass": true,
+          "pts": 1,
+          "max": 1
+        },
+        {
+          "label": "viewport export",
+          "pass": true,
+          "pts": 1,
+          "max": 1
+        },
+        {
+          "label": "OG image definida",
+          "pass": true,
+          "pts": 1,
+          "max": 1
+        },
+        {
+          "label": "title template %s",
+          "pass": true,
+          "pts": 0.5,
+          "max": 0.5
+        },
+        {
+          "label": "robots metadata",
+          "pass": true,
+          "pts": 0.5,
+          "max": 0.5
+        },
+        {
+          "label": "metadataBase",
+          "pass": true,
+          "pts": 0.5,
+          "max": 0.5
+        },
+        {
+          "label": "keywords",
+          "pass": true,
+          "pts": 0.5,
+          "max": 0.5
+        },
+        {
+          "label": "authors",
+          "pass": true,
+          "pts": 1,
+          "max": 1
+        }
+      ],
+      "schema": [
+        {
+          "label": "Organization",
+          "pass": true,
+          "pts": 0.5,
+          "max": 0.5
+        },
+        {
+          "label": "LocalBusiness",
+          "pass": true,
+          "pts": 0.5,
+          "max": 0.5
+        },
+        {
+          "label": "WebSite",
+          "pass": true,
+          "pts": 0.5,
+          "max": 0.5
+        },
+        {
+          "label": "FAQPage",
+          "pass": true,
+          "pts": 2,
+          "max": 2
+        },
+        {
+          "label": "Service",
+          "pass": true,
+          "pts": 2,
+          "max": 2
+        },
+        {
+          "label": "BreadcrumbList",
+          "pass": true,
+          "pts": 1,
+          "max": 1
+        },
+        {
+          "label": "Article/WebPage",
+          "pass": true,
+          "pts": 1.5,
+          "max": 1.5
+        },
+        {
+          "label": "AggregateRating",
+          "pass": false,
+          "pts": 0,
+          "max": 2
+        }
+      ],
+      "content": [
+        {
+          "label": "H1 en Hero",
+          "pass": true,
+          "pts": 1.5,
+          "max": 1.5
+        },
+        {
+          "label": "FAQ ≥5 items (14)",
+          "pass": true,
+          "pts": 1,
+          "max": 1
+        },
+        {
+          "label": "FAQ ≥8 items (14)",
+          "pass": true,
+          "pts": 1,
+          "max": 1
+        },
+        {
+          "label": "FAQ ≥12 items (14)",
+          "pass": true,
+          "pts": 1,
+          "max": 1
+        },
+        {
+          "label": "Blog /app/blog/",
+          "pass": true,
+          "pts": 2.5,
+          "max": 2.5
+        },
+        {
+          "label": "Stats y datos concretos",
+          "pass": true,
+          "pts": 1.5,
+          "max": 1.5
+        },
+        {
+          "label": "AboutEitan en page.tsx",
+          "pass": true,
+          "pts": 1.5,
+          "max": 1.5
+        }
+      ],
+      "eeat": [
+        {
+          "label": "Teléfono en schema",
+          "pass": true,
+          "pts": 1,
+          "max": 1
+        },
+        {
+          "label": "Email en schema",
+          "pass": true,
+          "pts": 1,
+          "max": 1
+        },
+        {
+          "label": "Dirección en schema",
+          "pass": true,
+          "pts": 1,
+          "max": 1
+        },
+        {
+          "label": "Horario en schema",
+          "pass": true,
+          "pts": 1,
+          "max": 1
+        },
+        {
+          "label": "Locale es_CL",
+          "pass": true,
+          "pts": 0.5,
+          "max": 0.5
+        },
+        {
+          "label": "AboutEitan visible",
+          "pass": true,
+          "pts": 2,
+          "max": 2
+        },
+        {
+          "label": "Testimonials component",
+          "pass": true,
+          "pts": 2,
+          "max": 2
+        },
+        {
+          "label": "Nombre autor (Eitan)",
+          "pass": true,
+          "pts": 0.5,
+          "max": 0.5
+        },
+        {
+          "label": "Authors en metadata",
+          "pass": true,
+          "pts": 1,
+          "max": 1
+        }
+      ]
+    }
+  },
+  {
+    "runId": 15,
+    "date": "2026-04-08",
+    "changes": [
+      "agente-tecnico-3",
+      "noindex y nofollow para /geo-audit",
+      "higiene de indexación para panel interno"
+    ],
+    "scores": {
+      "technical": 9,
+      "schema": 8,
+      "content": 10,
+      "eeat": 10
+    },
+    "overall": 9.25,
+    "checks": {
+      "technical": [
+        {
+          "label": "robots.txt",
+          "pass": true,
+          "pts": 1.5,
+          "max": 1.5
+        },
+        {
+          "label": "sitemap.ts",
+          "pass": true,
+          "pts": 1.5,
+          "max": 1.5
+        },
+        {
+          "label": "canonical (alternates)",
+          "pass": true,
+          "pts": 1,
+          "max": 1
+        },
+        {
+          "label": "viewport export",
+          "pass": true,
+          "pts": 1,
+          "max": 1
+        },
+        {
+          "label": "OG image definida",
+          "pass": true,
+          "pts": 1,
+          "max": 1
+        },
+        {
+          "label": "title template %s",
+          "pass": true,
+          "pts": 0.5,
+          "max": 0.5
+        },
+        {
+          "label": "robots metadata",
+          "pass": true,
+          "pts": 0.5,
+          "max": 0.5
+        },
+        {
+          "label": "metadataBase",
+          "pass": true,
+          "pts": 0.5,
+          "max": 0.5
+        },
+        {
+          "label": "keywords",
+          "pass": true,
+          "pts": 0.5,
+          "max": 0.5
+        },
+        {
+          "label": "authors",
+          "pass": true,
+          "pts": 1,
+          "max": 1
+        }
+      ],
+      "schema": [
+        {
+          "label": "Organization",
+          "pass": true,
+          "pts": 0.5,
+          "max": 0.5
+        },
+        {
+          "label": "LocalBusiness",
+          "pass": true,
+          "pts": 0.5,
+          "max": 0.5
+        },
+        {
+          "label": "WebSite",
+          "pass": true,
+          "pts": 0.5,
+          "max": 0.5
+        },
+        {
+          "label": "FAQPage",
+          "pass": true,
+          "pts": 2,
+          "max": 2
+        },
+        {
+          "label": "Service",
+          "pass": true,
+          "pts": 2,
+          "max": 2
+        },
+        {
+          "label": "BreadcrumbList",
+          "pass": true,
+          "pts": 1,
+          "max": 1
+        },
+        {
+          "label": "Article/WebPage",
+          "pass": true,
+          "pts": 1.5,
+          "max": 1.5
+        },
+        {
+          "label": "AggregateRating",
+          "pass": false,
+          "pts": 0,
+          "max": 2
+        }
+      ],
+      "content": [
+        {
+          "label": "H1 en Hero",
+          "pass": true,
+          "pts": 1.5,
+          "max": 1.5
+        },
+        {
+          "label": "FAQ ≥5 items (14)",
+          "pass": true,
+          "pts": 1,
+          "max": 1
+        },
+        {
+          "label": "FAQ ≥8 items (14)",
+          "pass": true,
+          "pts": 1,
+          "max": 1
+        },
+        {
+          "label": "FAQ ≥12 items (14)",
+          "pass": true,
+          "pts": 1,
+          "max": 1
+        },
+        {
+          "label": "Blog /app/blog/",
+          "pass": true,
+          "pts": 2.5,
+          "max": 2.5
+        },
+        {
+          "label": "Stats y datos concretos",
+          "pass": true,
+          "pts": 1.5,
+          "max": 1.5
+        },
+        {
+          "label": "AboutEitan en page.tsx",
+          "pass": true,
+          "pts": 1.5,
+          "max": 1.5
+        }
+      ],
+      "eeat": [
+        {
+          "label": "Teléfono en schema",
+          "pass": true,
+          "pts": 1,
+          "max": 1
+        },
+        {
+          "label": "Email en schema",
+          "pass": true,
+          "pts": 1,
+          "max": 1
+        },
+        {
+          "label": "Dirección en schema",
+          "pass": true,
+          "pts": 1,
+          "max": 1
+        },
+        {
+          "label": "Horario en schema",
+          "pass": true,
+          "pts": 1,
+          "max": 1
+        },
+        {
+          "label": "Locale es_CL",
+          "pass": true,
+          "pts": 0.5,
+          "max": 0.5
+        },
+        {
+          "label": "AboutEitan visible",
+          "pass": true,
+          "pts": 2,
+          "max": 2
+        },
+        {
+          "label": "Testimonials component",
+          "pass": true,
+          "pts": 2,
+          "max": 2
+        },
+        {
+          "label": "Nombre autor (Eitan)",
+          "pass": true,
+          "pts": 0.5,
+          "max": 0.5
+        },
+        {
+          "label": "Authors en metadata",
+          "pass": true,
+          "pts": 1,
+          "max": 1
+        }
+      ]
+    }
   }
 ]

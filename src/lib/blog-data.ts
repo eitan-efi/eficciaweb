@@ -5,6 +5,7 @@ export interface BlogPost {
   fecha: string;
   rubro: string;
   tiempoLectura: string;
+  resumen: string[];
   contenido: BlogSection[];
 }
 
@@ -25,6 +26,11 @@ export const BLOG_POSTS: BlogPost[] = [
     fecha: "2026-04-08",
     rubro: "Retail",
     tiempoLectura: "6 min",
+    resumen: [
+      "WhatsApp es el canal más directo para atender consultas retail en Chile sin cambiar hábitos del cliente.",
+      "Un chatbot puede responder FAQs, calificar leads y derivar al equipo humano cuando haga falta.",
+      "Con herramientas no-code, una versión útil puede implementarse en alrededor de una semana.",
+    ],
     contenido: [
       {
         tipo: "p",
@@ -110,6 +116,11 @@ export const BLOG_POSTS: BlogPost[] = [
     fecha: "2026-04-08",
     rubro: "Servicios profesionales",
     tiempoLectura: "7 min",
+    resumen: [
+      "El cuello de botella suele estar en el seguimiento manual, no en la falta de leads.",
+      "Automatizar recordatorios, secuencias y estados de CRM evita que oportunidades reales se enfríen.",
+      "La personalización se puede mantener usando contexto del prospecto dentro del flujo automatizado.",
+    ],
     contenido: [
       {
         tipo: "p",
@@ -193,6 +204,11 @@ export const BLOG_POSTS: BlogPost[] = [
     fecha: "2026-04-08",
     rubro: "Salud",
     tiempoLectura: "6 min",
+    resumen: [
+      "En clínicas y consultorios, la mayor ganancia suele estar en automatizar tareas administrativas repetitivas.",
+      "Confirmaciones de citas, consultas frecuentes y reportes son tres puntos de partida claros.",
+      "La IA debe usarse para lo operativo; las decisiones clínicas siguen requiriendo criterio humano.",
+    ],
     contenido: [
       {
         tipo: "p",

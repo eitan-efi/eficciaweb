@@ -42,7 +42,7 @@ export function AboutEitan() {
                     </motion.div>
                     <div className="relative w-full aspect-square md:aspect-[4/5] rounded-[2rem] overflow-hidden bg-background/5 p-8 flex border border-background/10 items-end">
                         <div className="text-background/40 font-mono text-sm max-w-xs absolute bottom-8 left-8">
-                            "El perfeccionismo que no agrega valor es un desperdicio." <br /> — E.M.
+                            &ldquo;El perfeccionismo que no agrega valor es un desperdicio.&rdquo; <br /> — E.M.
                         </div>
                     </div>
                 </div>

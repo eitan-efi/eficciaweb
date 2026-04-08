@@ -21,11 +21,11 @@ export const COPY = {
 
   // ── ProofStrip ───────────────────────────────────────────────────────────────
   proof: {
-    label: "Ya confían en Eficcia",
+    label: "Qué hace distinto este diagnóstico",
     stats: [
-      { value: "15+", label: "empresas diagnosticadas" },
-      { value: "2 min", label: "para obtener tu diagnóstico" },
-      { value: "3x", label: "más conversiones con chatbot IA" },
+      { value: "4", label: "preguntas para detectar el cuello de botella" },
+      { value: "2 min", label: "para obtener una recomendación priorizada" },
+      { value: "3", label: "rutas de automatización que cubre el diagnóstico" },
     ],
   },
 
@@ -58,6 +58,35 @@ export const COPY = {
     cta: "Comenzar mi diagnóstico",
   },
 
+  // ── Summary Block ───────────────────────────────────────────────────────────
+  summaryBlock: {
+    badge: "En resumen",
+    headline: "Qué te llevas en 2 minutos",
+    items: [
+      {
+        titulo: "Problema",
+        descripcion:
+          "Detectamos el cuello de botella principal que hoy le está costando tiempo, ventas o foco a tu empresa.",
+      },
+      {
+        titulo: "Recomendación",
+        descripcion:
+          "Te decimos qué automatizar primero y si la prioridad está en atención, seguimiento comercial u operación interna.",
+      },
+      {
+        titulo: "Tiempo hasta valor",
+        descripcion:
+          "Te mostramos qué resultado esperar y qué tan rápido puede verse un impacto inicial si se implementa bien.",
+      },
+      {
+        titulo: "Siguiente paso",
+        descripcion:
+          "Si tiene sentido seguir, sales con una revisión clara y sin compromiso para aterrizar la implementación.",
+      },
+    ],
+    cta: "Ver mi diagnóstico",
+  },
+
   // ── PainPoints ───────────────────────────────────────────────────────────────
   painPoints: {
     badge: "¿Te suena alguno de esto?",
@@ -74,10 +103,10 @@ export const COPY = {
 
   // ── Outcomes ─────────────────────────────────────────────────────────────────
   outcomes: {
-    badge: "Resultados reales",
+    badge: "Patrones de impacto",
     headline: "Lo que logran las empresas\nque implementan bien.",
     subheadline:
-      "Sin promesas vagas. Estos son los resultados concretos que genera la IA implementada correctamente en PYMEs.",
+      "No son garantías universales. Son patrones que solemos ver cuando el proceso correcto se automatiza bien. El diagnóstico te dice cuál aplica a tu caso.",
     items: [
       {
         metrica: "3x",
@@ -227,13 +256,24 @@ export const COPY = {
     paso_email: {
       pregunta: "¿A dónde enviamos tu diagnóstico?",
       subpregunta: "Te llegará un resumen personalizado con la recomendación y los próximos pasos.",
+      bullets: [
+        "Resumen personalizado según tus respuestas",
+        "Recomendación priorizada para tu caso",
+        "Siguiente paso sugerido si vale la pena avanzar",
+      ],
+      trust: "No compartimos tu correo ni te metemos a una secuencia automática sin contexto.",
       placeholder: "tu@empresa.com",
       cta: "Ver mi diagnóstico",
     },
     resultado: {
       badge: "Tu diagnóstico personalizado",
       cta_calendly: "https://calendly.com/eitan-eficcia/30min",
-      cta_label: "Agendar llamada para revisar esto",
+      cta_label: "Agendar revisión de 30 minutos",
+      next_steps: [
+        "Revisamos si la prioridad que salió tiene sentido para tu empresa",
+        "Te digo qué implementaría primero y qué dejaría fuera",
+        "Si no hay fit real, te lo digo directo y no avanzamos",
+      ],
       nota: "La llamada es gratuita. 30 minutos. Sin presión.",
     },
   },

@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 import { QuizResultType, QuizAnswers } from "@/lib/types";
 import { COPY } from "@/lib/copy";
 import { QUIZ_RESULTS } from "@/lib/quiz-data";
-import { CalendarBlank, Target, ChartLineUp } from "@phosphor-icons/react";
+import { CalendarBlank, Target, ChartLineUp, CheckCircle } from "@phosphor-icons/react";
 
 interface QuizResultProps {
     resultado: QuizResultType;
@@ -52,6 +52,20 @@ export function QuizResult({ resultado }: QuizResultProps) {
                             </p>
                         </div>
                     </div>
+                </div>
+            </div>
+
+            <div className="w-full mt-8 rounded-2xl border border-white/10 bg-white/[0.03] p-6">
+                <h3 className="text-sm font-semibold uppercase tracking-[2px] text-sky-400 mb-4">
+                    Qué pasa en la revisión
+                </h3>
+                <div className="flex flex-col gap-3">
+                    {copy.next_steps?.map((item: string) => (
+                        <div key={item} className="flex items-start gap-3">
+                            <CheckCircle size={18} weight="fill" className="text-sky-400 shrink-0 mt-0.5" />
+                            <p className="text-sm text-white/70 leading-relaxed">{item}</p>
+                        </div>
+                    ))}
                 </div>
             </div>
 
