@@ -46,9 +46,19 @@ export function QuizEmailCapture({ answers, resultado, onSubmit }: QuizEmailCapt
                 headers: { "Content-Type": "application/json" }
             });
 
-            const data: QuizSubmitResponse = await res.json();
-            if (!res.ok || !data.ok) {
-                throw new Error(data.error || "Hubo un error al guardar tu resultado.");
+            const raw = await res.text();
+            let data: QuizSubmitResponse | null = null;
+
+            if (raw) {
+                try {
+                    data = JSON.parse(raw) as QuizSubmitResponse;
+                } catch {
+                    throw new Error("No pudimos procesar la respuesta del servidor.");
+                }
+            }
+
+            if (!res.ok || !data?.ok) {
+                throw new Error(data?.error || "Hubo un error al guardar tu resultado.");
             }
 
             onSubmit();

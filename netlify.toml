@@ -2,5 +2,13 @@
   command = "npm run build"
   publish = "out"
 
+[functions]
+  directory = "netlify/functions"
+
 [build.environment]
   NODE_VERSION = "20"
+
+[[redirects]]
+  from = "/api/quiz/submit"
+  to = "/.netlify/functions/quiz-submit"
+  status = 200
