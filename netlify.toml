@@ -1,14 +1,38 @@
+# El sitio pasó a ser una sola página estática (activo/negocio/web/eficcia-2026).
+# Sin build: Netlify publica la carpeta site/ tal cual.
+# El Next.js anterior sigue en el repo por si hay que volver atrás, pero no se compila.
+
 [build]
-  command = "npm run build"
-  publish = "out"
+  publish = "site"
 
-[functions]
-  directory = "netlify/functions"
-
-[build.environment]
-  NODE_VERSION = "20"
+# Las rutas del sitio viejo ya no existen. Se redirigen a la home para que ningún
+# link externo, campaña o resultado de Google caiga en un 404.
+[[redirects]]
+  from = "/quiz"
+  to = "/"
+  status = 301
 
 [[redirects]]
-  from = "/api/quiz/submit"
-  to = "/.netlify/functions/quiz-submit"
-  status = 200
+  from = "/quiz/*"
+  to = "/"
+  status = 301
+
+[[redirects]]
+  from = "/blog"
+  to = "/"
+  status = 301
+
+[[redirects]]
+  from = "/blog/*"
+  to = "/"
+  status = 301
+
+[[redirects]]
+  from = "/geo-audit"
+  to = "/"
+  status = 301
+
+[[redirects]]
+  from = "/api/*"
+  to = "/"
+  status = 301

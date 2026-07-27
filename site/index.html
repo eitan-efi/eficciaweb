@@ -1,0 +1,951 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Eficcia — Control de obligaciones para oficinas contables</title>
+<meta name="description" content="Instalo el sistema que ordena las obligaciones de todos tus clientes, con su fecha y su responsable, y automatizo lo lento y repetitivo. Diagnóstico gratis.">
+<link rel="canonical" href="https://eficcia.com/">
+<meta name="theme-color" content="#000000">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://eficcia.com/">
+<meta property="og:locale" content="es_CL">
+<meta property="og:site_name" content="Eficcia">
+<meta property="og:title" content="Eficcia — Control de obligaciones para oficinas contables">
+<meta property="og:description" content="Todo lo que vence, en una sola pantalla. Con su fecha y su responsable. Diagnóstico gratis.">
+<meta property="og:image" content="https://eficcia.com/assets/hero-poster.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+<!-- Fontshare: UNA familia por link (la URL multi-familia devuelve CSS vacío),
+     y sin especificar pesos en Sentient para que incluya las itálicas reales. -->
+<link href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,700,900&display=swap" rel="stylesheet">
+<link href="https://api.fontshare.com/v2/css?f[]=sentient&display=swap" rel="stylesheet">
+<style>
+  :root{
+    /* tokens completos — sincronizados con docs/marca.md */
+    --brand:#2652EC; --brand-lift:#5B84FF; --brand-deep:#12246B;
+    --void:#000; --surface:#0B0D12; --line:#1D222E;
+    --ink:#16191C; --paper:#fff; --paper-soft:#F4F4F4; --muted:#8A93A6;
+    --ok:#3FB68B; --soon:#E0A33C; --late:#E0574C;
+    --display:"Sentient", Georgia, serif;
+    /* pixel: SOLO los dos titulares grandes (hero y cierre). Es monoespaciada y muy
+       ancha: nunca usarla en párrafos ni con tamaños de la escala de --display. */
+    --pixel:"Press Start 2P", "Courier New", monospace;
+    --sans:"Satoshi", system-ui, sans-serif;
+    --mono:"JetBrains Mono", monospace;
+    /* una sola curva para todo el sitio: la consistencia del easing es de lo que
+       más separa un sitio pro de uno armado a pedazos */
+    --ease:cubic-bezier(.2,0,.1,1);
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{background:var(--void);color:#fff;font-family:var(--sans);-webkit-font-smoothing:antialiased;overflow-x:hidden}
+  /* grano de película sobre todo el sitio: la textura cinematográfica que da
+     sensación de caro. Va en overlay para no levantar el negro puro. */
+  body::after{content:"";position:fixed;inset:0;z-index:200;pointer-events:none;
+    background-image:url(assets/noise.png);background-size:220px 220px;
+    opacity:.22;mix-blend-mode:overlay}
+  section{position:relative}
+  .wrap{max-width:1440px;margin:0 auto;padding:0 clamp(20px,4vw,56px)}
+
+  /* ============ LOADER: grilla que se disuelve en orden aleatorio ============ */
+  /* la pantalla se llena del azul de marca y se disuelve celda por celda en orden
+     aleatorio. Es el golpe de entrada: el color tiene que ser el de la marca,
+     no negro, o no se ve nada. */
+  #loadgrid{position:fixed;inset:0;z-index:999;display:grid;
+            grid-template-columns:repeat(12,1fr);grid-template-rows:repeat(8,1fr);pointer-events:none}
+  #loadgrid div{background:var(--brand);transition:opacity .18s ease}
+  #loadgrid div.out{opacity:0}
+
+  /* ============ NAV ============ */
+  nav{position:fixed;top:0;left:0;right:0;z-index:60;display:flex;align-items:center;
+      justify-content:space-between;padding:28px clamp(20px,4vw,56px);
+      transition:background .3s, backdrop-filter .3s}
+  /* negro sólido, no blur: el glassmorphism está prohibido en marca.md y además
+     el backdrop-filter cuesta caro en celulares de gama media */
+  nav.stuck{background:#000}
+  nav .logo{height:24px;display:block}
+  .navlinks{display:flex;gap:32px;font-size:14px}
+  .navlinks a{color:#fff;text-decoration:none;opacity:.72;transition:opacity .25s}
+  .navlinks a:hover{opacity:1}
+  /* en móvil los links se ocultan: sin esto el visitante se queda sin forma de agendar */
+  .navcta{display:none;background:var(--brand);color:#fff;text-decoration:none;font-weight:700;
+          font-size:13px;padding:11px 16px;white-space:nowrap;letter-spacing:-.01em}
+
+  /* ============ HERO ============ */
+  .hero{height:100vh;min-height:640px;display:flex;flex-direction:column;overflow:hidden;
+        padding:32px clamp(20px,4vw,56px) clamp(28px,4vh,48px)}
+  /* scrim: oscurece arriba y abajo para que el nav y el pitch se lean sobre el video,
+     dejando limpio el centro donde va el titular */
+  .hero::after{content:"";position:absolute;inset:0;z-index:2;pointer-events:none;
+    background:linear-gradient(180deg,rgba(0,0,0,.6) 0%,rgba(0,0,0,0) 20%,
+               rgba(0,0,0,0) 46%,rgba(0,0,0,.72) 74%,rgba(0,0,0,.93) 100%)}
+  .stage{position:absolute;inset:0;display:grid;place-items:center;z-index:1;
+         pointer-events:none;padding-bottom:14vh}
+  /* el halo radial gigante se quitó: es el delator número uno de plantilla SaaS oscura */
+  .halo{display:none}
+  .bird{width:min(86vw,1120px);display:block;opacity:.92;
+        animation:glide 9s ease-in-out infinite}
+  /* centrado en el hero. El monitor viene cortado en el archivo, así que el borde superior
+     se desvanece con una máscara: el corte se lee como atmósfera y no como recorte. */
+  .bird-media{position:absolute;top:44%;left:50%;transform:translate(-50%,-50%);
+              width:min(70vw,980px);height:auto;display:block;
+              -webkit-mask-image:linear-gradient(180deg,transparent 0%,#000 15%);
+              mask-image:linear-gradient(180deg,transparent 0%,#000 15%)}
+  @keyframes glide{0%,100%{transform:translateY(0)}50%{transform:translateY(-16px)}}
+  .ph{position:absolute;bottom:25%;left:50%;transform:translateX(-50%);font-family:var(--mono);
+      font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);z-index:2}
+  /* Press Start 2P es monoespaciada y ancha (~1em por letra) y no tiene itálica real:
+     forzarla daría una oblicua sintética que en pixel-art se ve rota. Por eso
+     font-style:normal y un tamaño muy por debajo de la escala de la serif. */
+  /* en flujo, no absoluto: con top:62% el titular no reservaba espacio y en pantallas
+     cortas (iPhone SE, o barra de dirección abierta) se montaba encima del pitch */
+  .headline{position:relative;z-index:3;margin-top:auto;padding-bottom:clamp(20px,5vh,54px);
+            text-align:center;pointer-events:none;font-family:var(--pixel);font-weight:400;
+            font-style:normal;
+            font-size:clamp(19px,5.1vw,62px);line-height:1.32;letter-spacing:0;
+            text-shadow:0 4px 60px rgba(0,0,0,.55)}
+  .headline .ln{display:block}
+  .foot{position:relative;z-index:4;display:flex;align-items:flex-end;
+        justify-content:space-between;gap:40px}
+  .pitch h2{font-weight:700;font-size:clamp(21px,2.5vw,31px);letter-spacing:-.015em;line-height:1.15}
+  .pitch h2 em{font-style:normal;color:var(--brand-lift)}
+  .pitch p{margin-top:12px;color:var(--muted);font-size:15px;max-width:46ch;line-height:1.55}
+  .cta{display:flex;align-items:center;gap:26px;flex-shrink:0}
+  .rule{width:clamp(60px,14vw,230px);height:1px;background:linear-gradient(90deg,transparent,#4A5163);position:relative}
+  .rule::after{content:"";position:absolute;right:0;top:-3px;width:7px;height:7px;
+               border-top:1px solid #4A5163;border-right:1px solid #4A5163;transform:rotate(45deg)}
+  .btn{display:inline-flex;align-items:center;gap:14px;background:var(--paper);color:#000;
+       border-radius:0;padding:17px 24px;font-weight:700;font-size:15px;text-decoration:none;
+       transition:background .28s var(--ease),color .28s var(--ease),box-shadow .38s var(--ease)}
+  .btn:hover{background:var(--brand);color:#fff;
+             box-shadow:0 10px 44px -10px var(--brand),0 0 0 1px var(--brand)}
+  .btn svg{width:12px;height:12px}
+
+  /* ============ REVELADO DE PALABRAS (la técnica de Tenex) ============ */
+  .tw{display:inline-block;will-change:transform,opacity}
+  .reveal-sec{padding:clamp(90px,13vh,150px) 0}
+  .kicker{font-family:var(--mono);font-size:11px;letter-spacing:.18em;text-transform:uppercase;
+          color:var(--muted);margin-bottom:36px;display:block}
+  .big{font-weight:700;font-size:clamp(30px,5.2vw,68px);line-height:1.06;letter-spacing:-.03em;
+       max-width:19ch}
+  .big .serif{font-family:var(--display);font-weight:400;font-style:italic;letter-spacing:-.01em}
+  .big .accent{color:var(--brand-lift)}
+  .lede{margin-top:44px;max-width:60ch;font-size:clamp(16px,1.5vw,19px);line-height:1.65;color:#B9C0CC}
+  .quote{margin-top:56px;padding-left:26px;border-left:2px solid var(--brand);
+         font-family:var(--display);font-size:clamp(19px,2.2vw,27px);line-height:1.35;
+         color:#E4E8EF;max-width:34ch}
+  /* ojo: debe apuntar solo al pie de la cita, nunca a los <span> que genera el split de palabras */
+  .quote .src{display:block;margin-top:14px;font-family:var(--mono);font-size:11px;
+              letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+
+  /* ============ TARJETAS TIPO "APPROACH" ============ */
+  .approach{padding:clamp(80px,12vh,140px) 0 clamp(120px,20vh,200px)}
+  .agrid{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:clamp(30px,6vw,90px);
+         align-items:start}
+  .asticky{position:sticky;top:22vh}
+  .acards{display:flex;flex-direction:column;gap:18px}
+  .acard{border:1px solid #1D222E;background:var(--surface);padding:32px 34px 30px;
+         cursor:pointer;transition:background .45s ease,color .45s ease,border-color .45s ease;
+         position:relative;overflow:hidden;min-height:210px}
+  .acard h3{font-size:clamp(22px,2.4vw,31px);font-weight:700;letter-spacing:-.02em;margin-bottom:14px}
+  .acard p{font-size:14.5px;line-height:1.6;color:var(--muted);max-width:44ch;transition:color .45s}
+  .acard .more{margin-top:22px;display:inline-flex;gap:9px;align-items:center;font-size:13px;
+               font-weight:700;opacity:.85}
+  .acard .num{position:absolute;top:30px;right:34px;font-family:var(--mono);font-size:11px;
+              letter-spacing:.14em;color:var(--muted);transition:color .45s}
+  .acard.cc-active{background:var(--brand);border-color:var(--brand);color:#fff}
+  .acard.cc-active p,.acard.cc-active .num{color:rgba(255,255,255,.85)}
+  /* el objeto de cada tarjeta: mix-blend-mode screen hace desaparecer el fondo negro
+     de la foto, así el objeto flota igual que en la referencia */
+  .acard .obj{position:absolute;top:0;right:0;width:46%;height:100%;object-fit:cover;
+              mix-blend-mode:screen;opacity:.42;transition:opacity .45s;pointer-events:none;
+              -webkit-mask-image:linear-gradient(90deg,transparent 0%,#000 58%);
+              mask-image:linear-gradient(90deg,transparent 0%,#000 58%)}
+  /* sobre el azul, screen quema la foto: soft-light la integra sin lavarla */
+  .acard.cc-active .obj{mix-blend-mode:soft-light;opacity:.9}
+  .acard h3,.acard p,.acard .more,.acard .num{position:relative;z-index:2}
+  .acard p{max-width:31ch}
+
+  /* sección del problema: texto + objeto grande al lado */
+  .pgrid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,.82fr);
+         gap:clamp(28px,5vw,72px);align-items:center}
+  /* máscara radial: sin esto se ve el rectángulo de la foto y se rompe el efecto de flotar */
+  /* sin la cita, la columna de texto quedó corta: se limita la foto para no dejar un hoyo negro */
+  .pobj{width:100%;max-width:480px;margin-left:auto;display:block;mix-blend-mode:screen;opacity:.8;
+        -webkit-mask-image:radial-gradient(ellipse at center,#000 38%,transparent 76%);
+        mask-image:radial-gradient(ellipse at center,#000 38%,transparent 76%)}
+
+  /* ============ LAS TRES FUENTES QUE ENTRAN AL CENTRO ============ */
+  .fuentes{margin-top:clamp(44px,6vh,64px)}
+  /* gap 0 a propósito: así el centro de cada columna cae exacto en 1/6, 3/6 y 5/6,
+     que es donde arrancan las tres curvas del SVG de abajo */
+  .fnodes{display:grid;grid-template-columns:repeat(3,1fr);gap:0}
+  .fnode{display:flex;flex-direction:column;align-items:center;text-align:center;gap:15px}
+  .fring{position:relative;width:76px;height:76px;border-radius:50%;display:grid;place-items:center;
+         border:1px solid var(--line);background:var(--surface);color:#D6DBE4;flex-shrink:0}
+  .fring svg{width:29px;height:29px;fill:currentColor}
+  /* el CSS le gana al atributo fill="none" del SVG: sin esto el ícono de trazo sale como mancha */
+  .fring svg.stroked{fill:none;stroke:currentColor}
+  /* el ping: dos aros que salen del círculo y se desvanecen */
+  .fring::before,.fring::after{content:"";position:absolute;inset:-1px;border-radius:50%;
+    border:1px solid var(--brand-lift);opacity:0;animation:ping 2.8s var(--ease) infinite}
+  .fring::after{animation-delay:1.4s}
+  .fnode:nth-child(2) .fring::before{animation-delay:.9s}
+  .fnode:nth-child(2) .fring::after{animation-delay:2.3s}
+  .fnode:nth-child(3) .fring::before{animation-delay:1.8s}
+  .fnode:nth-child(3) .fring::after{animation-delay:3.2s}
+  @keyframes ping{0%{transform:scale(1);opacity:.5}70%{opacity:0}100%{transform:scale(1.6);opacity:0}}
+  .flabel{font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;
+          color:var(--muted);max-width:21ch;line-height:1.55}
+  .flines{width:100%;height:auto;display:block;margin-top:10px}
+  .fline{stroke:#262C3B;stroke-width:2}
+  .fdot{fill:var(--brand-lift)}
+  /* el tablero se pega al final de las líneas: son una sola pieza */
+  .fuentes+.board{margin-top:0}
+
+  /* ============ TABLERO (Centro de Obligaciones) ============ */
+  .centro{padding:clamp(60px,8vh,90px) 0 clamp(70px,10vh,110px)}
+  .board{border:1px solid var(--line);background:var(--surface);margin-top:52px;
+         box-shadow:0 24px 60px -30px rgba(0,0,0,.9)}
+  .board-top{display:flex;align-items:center;justify-content:space-between;gap:16px;
+             padding:15px 22px;border-bottom:1px solid var(--line);
+             font-family:var(--mono);font-size:11px;letter-spacing:.13em;text-transform:uppercase;
+             color:var(--muted)}
+  .board-top b{color:#fff;font-weight:400}
+  /* KPIs: el número manda, la etiqueta susurra */
+  .kpis{display:grid;grid-template-columns:repeat(4,1fr);border-bottom:1px solid var(--line)}
+  .kpi{padding:30px 24px 26px;border-right:1px solid var(--line)}
+  .kpi:last-child{border-right:0}
+  .kpi .v{font-family:var(--mono);font-size:clamp(27px,3.3vw,41px);line-height:1;
+          letter-spacing:-.03em;color:#fff}
+  .kpi .l{margin-top:12px;font-family:var(--mono);font-size:10px;letter-spacing:.15em;
+          text-transform:uppercase;color:var(--muted);display:flex;align-items:center;gap:7px}
+  .kpi .l i{width:6px;height:6px;flex-shrink:0;font-style:normal}
+  .kpi.ok .v{color:var(--ok)}     .kpi.ok .l i{background:var(--ok)}
+  .kpi.soon .v{color:var(--soon)} .kpi.soon .l i{background:var(--soon)}
+  .kpi.late .v{color:var(--late)} .kpi.late .l i{background:var(--late)}
+  /* pestañas para cambiar de vista */
+  .tabs{display:flex;border:1px solid var(--line)}
+  .tab{background:none;border:0;color:var(--muted);font-family:var(--mono);font-size:10px;
+       letter-spacing:.15em;text-transform:uppercase;padding:9px 18px;cursor:pointer;
+       transition:background .3s var(--ease),color .3s var(--ease)}
+  .tab+.tab{border-left:1px solid var(--line)}
+  .tab:hover{color:#fff}
+  .tab.active{background:var(--brand);color:#fff}
+  .view[hidden]{display:none}
+
+  /* vista tareas */
+  .brow{display:grid;grid-template-columns:1.25fr 1.45fr .8fr .62fr .82fr;gap:18px;align-items:center;
+        padding:16px 22px;border-bottom:1px solid #14181F;font-size:14px}
+  .brow:last-child{border-bottom:0}
+  .bhead{font-family:var(--mono);font-size:10px;letter-spacing:.15em;text-transform:uppercase;
+         color:var(--muted);padding-block:12px}
+  .bcli{font-weight:700;letter-spacing:-.01em}
+  .bobl{color:#C3CAD6}
+  .bres,.bven{color:var(--muted);font-family:var(--mono);font-size:12.5px}
+  .st{display:inline-flex;align-items:center;gap:8px;font-size:12.5px;font-weight:700;white-space:nowrap}
+  .st i{width:7px;height:7px;flex-shrink:0;font-style:normal}
+  .st.ok{color:var(--ok)}     .st.ok i{background:var(--ok)}
+  .st.soon{color:var(--soon)} .st.soon i{background:var(--soon)}
+  .st.late{color:var(--late)} .st.late i{background:var(--late)}
+
+  /* vista dashboard: un donut por persona */
+  .pcards{display:grid;grid-template-columns:repeat(4,1fr)}
+  .pcard{padding:30px 20px 28px;border-right:1px solid var(--line);text-align:center}
+  .pcard:last-child{border-right:0}
+  .dwrap{position:relative;width:120px;margin:0 auto 18px}
+  .donut{width:120px;height:120px;display:block}
+  .donut circle{fill:none;stroke-width:9}
+  .ring-bg{stroke:#151A24}
+  .seg{stroke-linecap:butt;transform:rotate(-90deg);transform-origin:50% 50%}
+  .seg.ok{stroke:var(--ok)} .seg.soon{stroke:var(--soon)} .seg.late{stroke:var(--late)}
+  .dtot{position:absolute;inset:0;display:grid;place-items:center;font-family:var(--mono);
+        font-size:25px;letter-spacing:-.02em;color:#fff}
+  .pcard h6{font-size:16px;font-weight:700;letter-spacing:-.015em;margin-bottom:14px}
+  .legend{list-style:none;display:flex;flex-direction:column;gap:7px;align-items:flex-start;
+          width:fit-content;margin:0 auto}
+  .legend li{display:flex;align-items:center;gap:9px;font-family:var(--mono);font-size:11.5px;
+             color:var(--muted)}
+  .legend i{width:6px;height:6px;flex-shrink:0;font-style:normal}
+  .legend i.ok{background:var(--ok)} .legend i.soon{background:var(--soon)} .legend i.late{background:var(--late)}
+  .ejemplo{margin-top:14px;font-family:var(--mono);font-size:10.5px;letter-spacing:.13em;
+           text-transform:uppercase;color:var(--muted)}
+
+  /* ============ CÓMO TRABAJO ============ */
+  .steps{display:grid;grid-template-columns:repeat(4,1fr);gap:0;margin-top:56px;
+         border-top:1px solid var(--line)}
+  .step{padding:34px 26px 30px 0;border-right:1px solid var(--line);position:relative}
+  .step:last-child{border-right:0}
+  .step .n{font-family:var(--mono);font-size:11px;letter-spacing:.14em;color:var(--brand-lift);
+           display:block;margin-bottom:16px}
+  .step h4{font-size:19px;font-weight:700;letter-spacing:-.015em;margin-bottom:10px}
+  .step p{font-size:13.5px;line-height:1.6;color:var(--muted);max-width:26ch}
+
+  /* ============ PRUEBA (única sección clara) ============ */
+  .proof{background:var(--paper);color:var(--ink);padding:clamp(90px,15vh,160px) 0}
+  .proof .kicker{color:#6A7284}
+  .proof .big{color:var(--ink)}
+  .proof .big .accent{color:var(--brand)}
+  .pcols{display:grid;grid-template-columns:1.1fr .9fr;gap:clamp(30px,6vw,84px);margin-top:52px;
+         align-items:start}
+  .proof p{font-size:16px;line-height:1.7;color:#3C424E;max-width:56ch}
+  .proof p+p{margin-top:18px}
+  /* los tres pasos numerados de la sección clara */
+  .psteps{display:flex;flex-direction:column;gap:34px}
+  .pstep{display:grid;grid-template-columns:auto minmax(0,1fr);gap:22px;align-items:start}
+  .pstep .n{font-family:var(--mono);font-size:12px;letter-spacing:.14em;color:var(--brand);
+            padding-top:5px}
+  .pstep h4{font-size:clamp(18px,2vw,22px);font-weight:700;letter-spacing:-.015em;
+            margin-bottom:9px;color:var(--ink)}
+  .pstep p{margin:0}
+
+  .warranty{border:1px solid #DCDFE6;background:var(--paper-soft);padding:34px 32px}
+  .warranty h4{font-family:var(--display);font-style:italic;font-size:27px;line-height:1.2;
+               margin-bottom:14px;color:var(--ink)}
+  .warranty p{font-size:14.5px;color:#4A505C;max-width:none}
+  .wnote{margin-top:18px;padding-top:18px;border-top:1px solid #DCDFE6;
+         font-size:13px!important;color:#6A7284!important}
+  /* el .btn base es blanco sobre negro: acá va invertido o desaparece en el fondo claro */
+  .wbtn{margin-top:26px;background:var(--ink);color:#fff}
+  .wbtn:hover{background:var(--brand);color:#fff}
+
+  /* ============ FAQ ============ */
+  .faq{padding:clamp(90px,14vh,150px) 0 clamp(110px,16vh,170px)}
+  .qs{margin-top:48px;border-top:1px solid var(--line)}
+  .q{border-bottom:1px solid var(--line)}
+  .q button{width:100%;background:none;border:0;color:#fff;font-family:var(--sans);
+            font-size:clamp(16px,1.7vw,20px);font-weight:700;letter-spacing:-.015em;text-align:left;
+            padding:26px 44px 26px 0;cursor:pointer;position:relative;
+            transition:color .3s var(--ease)}
+  .q button:hover{color:var(--brand-lift)}
+  .q button::after{content:"";position:absolute;right:6px;top:50%;width:9px;height:9px;
+                   border-right:1.5px solid currentColor;border-bottom:1.5px solid currentColor;
+                   transform:translateY(-70%) rotate(45deg);transition:transform .38s var(--ease)}
+  .q.open button::after{transform:translateY(-30%) rotate(-135deg)}
+  .q .ans{max-height:0;overflow:hidden;transition:max-height .48s var(--ease)}
+  .q .ans p{font-size:15px;line-height:1.7;color:var(--muted);max-width:68ch;padding-bottom:28px}
+
+  /* ============ INTEGRACIONES ============ */
+  .integra{padding:clamp(80px,12vh,130px) 0 clamp(100px,15vh,160px)}
+  .logogrid{display:grid;grid-template-columns:repeat(3,1fr);margin-top:52px;
+            border-top:1px solid var(--line);border-left:1px solid var(--line)}
+  .logocell{border-right:1px solid var(--line);border-bottom:1px solid var(--line);
+            display:grid;place-items:center;padding:34px 26px;min-height:118px;
+            transition:background .4s var(--ease)}
+  .logocell:hover{background:var(--surface)}
+  /* brightness(0) invert(1) pinta cualquier logo de blanco puro: así una fila de
+     logos de estilos y colores distintos se lee como un solo sistema */
+  .logocell img{height:24px;width:auto;max-width:100%;object-fit:contain;
+                filter:brightness(0) invert(1);opacity:.46;
+                transition:opacity .4s var(--ease)}
+  .logocell:hover img{opacity:1}
+  /* el SVG de Laudus viene con el tagline "a company in Visma" pegado: se recorta
+     y se recentra en vez de mostrarlo apretado e ilegible */
+  .logocell img.crop-r{clip-path:inset(0 34% 0 0);transform:translateX(17%)}
+  .logocell span{font-family:var(--sans);font-weight:700;font-size:17px;letter-spacing:-.01em;
+                 color:var(--muted);
+                 transition:color .4s var(--ease)}
+  .logocell:hover span{color:#fff}
+  .integra-nota{margin-top:26px;font-size:14px;color:var(--muted);max-width:62ch;line-height:1.65}
+
+  /* ============ MARQUEE ============ */
+  .marq{background:var(--brand);color:#fff;padding:15px 0;overflow:hidden;white-space:nowrap;
+        border-block:1px solid var(--brand)}
+  .marq div{display:inline-block;animation:slide 26s linear infinite}
+  .marq span{font-weight:700;font-size:14px;letter-spacing:-.01em;padding:0 26px}
+  @keyframes slide{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+  /* ============ CIERRE ============ */
+  .end{padding:clamp(90px,13vh,150px) 0 clamp(70px,10vh,110px);text-align:center}
+  .end h2{font-family:var(--pixel);font-style:normal;font-size:clamp(14px,2.7vw,30px);
+          line-height:1.75;letter-spacing:0;margin:0 auto 52px;max-width:17ch}
+  footer{border-top:1px solid #14181F;padding:34px 0;display:flex;justify-content:space-between;
+         align-items:center;font-size:13px;color:var(--muted)}
+
+  /* crop marks, el detalle de esquina de la referencia */
+  .crop{position:absolute;width:9px;height:9px;border-color:#2B3140;opacity:.9}
+  .crop.tl{top:0;left:0;border-top:1px solid;border-left:1px solid}
+  .crop.tr{top:0;right:0;border-top:1px solid;border-right:1px solid}
+
+  @media (max-width:900px){
+    .navlinks{display:none}
+    .navcta{display:inline-block}
+    nav{padding:16px 20px}
+    .agrid,.pgrid,.pcols{grid-template-columns:1fr;gap:40px}
+    .steps,.logogrid{grid-template-columns:1fr 1fr}
+    .logocell{padding:26px 18px;min-height:96px}
+    .step{padding:26px 20px 24px 0}
+    .step:nth-child(2){border-right:0}
+    /* el dashboard en móvil: KPIs y donuts de a dos */
+    .kpis,.pcards{grid-template-columns:1fr 1fr}
+    .kpi:nth-child(2),.pcard:nth-child(2){border-right:0}
+    .kpi:nth-child(-n+2),.pcard:nth-child(-n+2){border-bottom:1px solid var(--line)}
+    /* las tareas en móvil: se apilan por fila en vez de tabla */
+    .brow{grid-template-columns:1fr auto;gap:6px 14px;padding:14px 16px}
+    .bhead{display:none}
+    .bcli{grid-column:1}
+    .st{grid-column:2;grid-row:1}
+    .bobl{grid-column:1/-1;font-size:13px}
+    .bres,.bven{display:inline;font-size:11.5px}
+    .bres::after{content:" ·";color:#39404F}
+    .acard .obj{width:100%;opacity:.22;mask-image:linear-gradient(180deg,transparent,#000)}
+    .asticky{position:static}
+    .foot{flex-direction:column;align-items:flex-start;gap:24px}
+    .cta{width:100%;justify-content:space-between}
+    .rule{flex:1}
+    .bird,.bird-media{width:112vw}
+    .fring{width:58px;height:58px}
+    .fring svg{width:23px;height:23px}
+    .flabel{font-size:9.5px;letter-spacing:.06em;max-width:13ch}
+  }
+  @media (prefers-reduced-motion:reduce){
+    .bird{animation:none} .marq div{animation:none} html{scroll-behavior:auto}
+    .fring::before,.fring::after{animation:none;opacity:0}
+    .fdot{display:none}
+  }
+</style>
+</head>
+<body>
+
+<!-- loader: 72 celdas que se apagan en orden aleatorio, igual que la referencia -->
+<div id="loadgrid"></div>
+
+<nav id="nav">
+  <img class="logo" src="assets/logo-dark.png" alt="Eficcia">
+  <div class="navlinks">
+    <a href="#centro">Centro de Obligaciones</a>
+    <a href="#soluciones">Automatizaciones</a>
+    <a href="#prueba">Cómo funciona</a>
+    <a href="https://cal.com/eitan-markovits/llamada-descubrimiento" target="_blank" rel="noopener">Agendar diagnóstico</a>
+  </div>
+  <a class="navcta" href="https://cal.com/eitan-markovits/llamada-descubrimiento" target="_blank" rel="noopener">Agendar</a>
+</nav>
+
+<!-- ===================== HERO ===================== -->
+<section class="hero">
+  <div class="stage">
+    <!-- Al dejar hero.mp4 en assets/, el video se enciende solo y la silueta desaparece. -->
+    <video class="bird-media" autoplay muted loop playsinline preload="auto"
+           poster="assets/hero-poster.jpg" aria-hidden="true">
+      <source src="assets/hero.webm" type="video/webm">
+      <source src="assets/hero.mp4" type="video/mp4">
+    </video>
+  </div>
+
+  <h1 class="headline"><span class="ln">Actualiza</span><span class="ln">tu oficina</span></h1>
+
+  <div class="foot">
+    <div class="pitch">
+      <h2>Tu <em>oficina contable, bajo control</em>.</h2>
+      <p>Organizo la carga de tareas de tu equipo y automatizo lo lento y repetitivo que hoy hacen a mano.</p>
+    </div>
+    <div class="cta">
+      <div class="rule"></div>
+      <a class="btn" href="https://cal.com/eitan-markovits/llamada-descubrimiento" target="_blank" rel="noopener">Agendar diagnóstico
+        <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M2.5 9.5L9.5 2.5M4 2.5h5.5V8"/></svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== EL PROBLEMA (revelado por scroll) ===================== -->
+<section class="reveal-sec" id="problema">
+  <div class="wrap">
+    <span class="kicker">El costo de no tener control</span>
+    <h2 class="big stagger-words">
+      Tu oficina corre en tres lugares a la vez. <span class="serif accent">Ninguno te avisa.</span>
+    </h2>
+    <div class="pgrid">
+      <div>
+        <p class="lede type-in">
+          El correo, la planilla y el WhatsApp. Cien obligaciones por cliente repartidas entre tu equipo,
+          y ninguna pantalla que te diga en un segundo qué está listo, qué vence esta semana y quién lo tiene.
+          Así, que algo se pase no es mala suerte: es cuestión de tiempo.
+        </p>
+      </div>
+      <img class="pobj" src="assets/obj-problema.jpg" alt="">
+    </div>
+  </div>
+</section>
+
+<!-- ===================== EL CENTRO DE OBLIGACIONES ===================== -->
+<section class="centro" id="centro">
+  <div class="wrap">
+    <span class="kicker">Lo que tendrás</span>
+    <h2 class="big stagger-words">Todo lo que vence, en <span class="serif accent">una sola pantalla.</span></h2>
+    <p class="lede type-in">Permite tener más clientes, con mejor atención, con los mismos empleados.</p>
+
+    <!-- las tres fuentes de trabajo entrando al centro -->
+    <div class="fuentes">
+      <div class="fnodes">
+        <div class="fnode">
+          <span class="fring">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          </span>
+          <span class="flabel">Lo que te piden por WhatsApp</span>
+        </div>
+        <div class="fnode">
+          <span class="fring">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M24 5.457v13.909c0 .904-.732 1.636-1.636 1.636h-3.819V11.73L12 16.64l-6.545-4.91v9.273H1.636A1.636 1.636 0 010 19.366V5.457c0-2.023 2.309-3.178 3.927-1.964L5.455 4.64 12 9.548l6.545-4.91 1.528-1.145C21.69 2.28 24 3.434 24 5.457z"/></svg>
+          </span>
+          <span class="flabel">Lo que llega por correo</span>
+        </div>
+        <div class="fnode">
+          <span class="fring">
+            <svg class="stroked" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1"
+                 stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M20.5 12a8.5 8.5 0 11-2.49-6.01"/><path d="M20.5 3.2v4.6h-4.6"/>
+            </svg>
+          </span>
+          <span class="flabel">Lo que se repite cada mes</span>
+        </div>
+      </div>
+
+      <!-- el viewBox no se deforma: la altura escala con el ancho y los nodos caen en 1/6, 3/6 y 5/6 -->
+      <svg class="flines" viewBox="0 0 1200 150" fill="none" aria-hidden="true">
+        <path id="fl1" class="fline" d="M200 0C200 96 600 54 600 150"/>
+        <path id="fl2" class="fline" d="M600 0V150"/>
+        <path id="fl3" class="fline" d="M1000 0C1000 96 600 54 600 150"/>
+        <circle class="fdot" r="5"><animateMotion dur="2.8s" repeatCount="indefinite"><mpath href="#fl1"/></animateMotion></circle>
+        <circle class="fdot" r="5"><animateMotion dur="2.8s" begin="0.9s" repeatCount="indefinite"><mpath href="#fl2"/></animateMotion></circle>
+        <circle class="fdot" r="5"><animateMotion dur="2.8s" begin="1.8s" repeatCount="indefinite"><mpath href="#fl3"/></animateMotion></circle>
+      </svg>
+    </div>
+
+    <div class="board">
+      <div class="board-top">
+        <span>Centro de Control · <b>Julio 2026</b></span>
+        <div class="tabs">
+          <button class="tab active" type="button" data-v="tareas">Tareas</button>
+          <button class="tab" type="button" data-v="dash">Dashboard</button>
+        </div>
+      </div>
+
+      <!-- vista 1: las tareas -->
+      <div class="view" id="v-tareas">
+        <div class="brow bhead">
+          <span>Cliente</span><span>Obligación</span><span>Responsable</span><span>Vence</span><span>Estado</span>
+        </div>
+        <div class="brow"><span class="bcli">Constructora Andes</span><span class="bobl">F29 — julio</span><span class="bres">Carolina</span><span class="bven">12 jul</span><span class="st ok"><i></i>Al día</span></div>
+        <div class="brow"><span class="bcli">Importadora Lircay</span><span class="bobl">Liquidaciones de sueldo</span><span class="bres">Matías</span><span class="bven">20 jul</span><span class="st soon"><i></i>Por vencer</span></div>
+        <div class="brow"><span class="bcli">Transportes Maule</span><span class="bobl">Declaración jurada 1887</span><span class="bres">Carolina</span><span class="bven">28 jul</span><span class="st soon"><i></i>Por vencer</span></div>
+        <div class="brow"><span class="bcli">Clínica Los Robles</span><span class="bobl">Finiquito — término de contrato</span><span class="bres">Javiera</span><span class="bven">05 jul</span><span class="st late"><i></i>Atrasado</span></div>
+        <div class="brow"><span class="bcli">Áridos del Sur</span><span class="bobl">Facturación — cierre mensual</span><span class="bres">Matías</span><span class="bven">30 jul</span><span class="st ok"><i></i>Al día</span></div>
+        <div class="brow"><span class="bcli">Comercial Reñaca</span><span class="bobl">Balance anual</span><span class="bres">Rodrigo</span><span class="bven">31 jul</span><span class="st soon"><i></i>Por vencer</span></div>
+      </div>
+
+      <!-- vista 2: el dashboard -->
+      <div class="view" id="v-dash" hidden>
+        <div class="kpis">
+          <div class="kpi"><div class="v">1.204</div><div class="l">Obligaciones del mes</div></div>
+          <div class="kpi ok"><div class="v">1.132</div><div class="l"><i></i>Al día</div></div>
+          <div class="kpi soon"><div class="v">63</div><div class="l"><i></i>Por vencer</div></div>
+          <div class="kpi late"><div class="v">9</div><div class="l"><i></i>Atrasadas</div></div>
+        </div>
+        <div class="pcards">
+          <div class="pcard" data-ok="318" data-soon="18" data-late="4">
+            <div class="dwrap">
+              <svg class="donut" viewBox="0 0 120 120" aria-hidden="true">
+                <circle class="ring-bg" cx="60" cy="60" r="46"/>
+                <circle class="seg ok" cx="60" cy="60" r="46"/>
+                <circle class="seg soon" cx="60" cy="60" r="46"/>
+                <circle class="seg late" cx="60" cy="60" r="46"/>
+              </svg>
+              <span class="dtot">340</span>
+            </div>
+            <h6>Carolina</h6>
+            <ul class="legend">
+              <li><i class="ok"></i>318 al día</li><li><i class="soon"></i>18 por vencer</li><li><i class="late"></i>4 atrasadas</li>
+            </ul>
+          </div>
+          <div class="pcard" data-ok="300" data-soon="15" data-late="3">
+            <div class="dwrap">
+              <svg class="donut" viewBox="0 0 120 120" aria-hidden="true">
+                <circle class="ring-bg" cx="60" cy="60" r="46"/>
+                <circle class="seg ok" cx="60" cy="60" r="46"/>
+                <circle class="seg soon" cx="60" cy="60" r="46"/>
+                <circle class="seg late" cx="60" cy="60" r="46"/>
+              </svg>
+              <span class="dtot">318</span>
+            </div>
+            <h6>Matías</h6>
+            <ul class="legend">
+              <li><i class="ok"></i>300 al día</li><li><i class="soon"></i>15 por vencer</li><li><i class="late"></i>3 atrasadas</li>
+            </ul>
+          </div>
+          <div class="pcard" data-ok="280" data-soon="14" data-late="2">
+            <div class="dwrap">
+              <svg class="donut" viewBox="0 0 120 120" aria-hidden="true">
+                <circle class="ring-bg" cx="60" cy="60" r="46"/>
+                <circle class="seg ok" cx="60" cy="60" r="46"/>
+                <circle class="seg soon" cx="60" cy="60" r="46"/>
+                <circle class="seg late" cx="60" cy="60" r="46"/>
+              </svg>
+              <span class="dtot">296</span>
+            </div>
+            <h6>Javiera</h6>
+            <ul class="legend">
+              <li><i class="ok"></i>280 al día</li><li><i class="soon"></i>14 por vencer</li><li><i class="late"></i>2 atrasadas</li>
+            </ul>
+          </div>
+          <div class="pcard" data-ok="234" data-soon="16" data-late="0">
+            <div class="dwrap">
+              <svg class="donut" viewBox="0 0 120 120" aria-hidden="true">
+                <circle class="ring-bg" cx="60" cy="60" r="46"/>
+                <circle class="seg ok" cx="60" cy="60" r="46"/>
+                <circle class="seg soon" cx="60" cy="60" r="46"/>
+                <circle class="seg late" cx="60" cy="60" r="46"/>
+              </svg>
+              <span class="dtot">250</span>
+            </div>
+            <h6>Rodrigo</h6>
+            <ul class="legend">
+              <li><i class="ok"></i>234 al día</li><li><i class="soon"></i>16 por vencer</li><li><i class="late"></i>sin atrasadas</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    <p class="ejemplo">Vista de ejemplo · los datos reales son los de tu oficina</p>
+
+    <div class="steps">
+      <div class="step">
+        <span class="n">01</span>
+        <h4>Aparecen solas</h4>
+        <p>Las obligaciones que se repiten cada mes se cargan solas, con su fecha.</p>
+      </div>
+      <div class="step">
+        <span class="n">02</span>
+        <h4>Con responsable</h4>
+        <p>Cada una nace asignada. Nadie pregunta de quién era.</p>
+      </div>
+      <div class="step">
+        <span class="n">03</span>
+        <h4>Avisan antes</h4>
+        <p>El responsable recibe el aviso antes de que venza, no después.</p>
+      </div>
+      <div class="step">
+        <span class="n">04</span>
+        <h4>Tu equipo solo marca</h4>
+        <p>Una pantalla por persona, un click. No aprenden ningún software.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== PERO NO SOLO ESO ===================== -->
+<section class="approach" id="soluciones">
+  <div class="wrap agrid">
+    <div class="asticky">
+      <span class="kicker">Pero no solo eso</span>
+      <h2 class="big stagger-words">Lo que se repite, <span class="serif accent">se automatiza.</span></h2>
+    </div>
+    <div class="acards">
+      <article class="acard cc-active">
+        <img class="obj" src="assets/obj-automatizaciones.jpg" alt="">
+        <span class="num">01</span>
+        <h3>Automatizaciones</h3>
+        <p>Los softwares que ya usas dejan de estar aislados. Lo que hoy alguien copia y pega entre sistemas pasa a ocurrir solo, sin que nadie lo empuje.</p>
+      </article>
+      <article class="acard">
+        <img class="obj" src="assets/obj-planillas.jpg" alt="">
+        <span class="num">02</span>
+        <h3>Planillas automáticas</h3>
+        <p>El tracking mensual deja de hacerse a mano. Los datos llegan solos a la planilla que ya conoces, sin checks manuales ni riesgo de que se salte una fila.</p>
+      </article>
+      <article class="acard">
+        <img class="obj" src="assets/obj-centro.jpg" alt="">
+        <span class="num">03</span>
+        <h3>Documentos que se llenan solos</h3>
+        <p>Contratos, finiquitos y cartas que hoy alguien escribe uno por uno. Los datos ya están en tu sistema: el documento sale armado y listo para firmar.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== INTEGRACIONES ===================== -->
+<section class="integra" id="conexiones">
+  <div class="wrap">
+    <span class="kicker">Con qué se conecta</span>
+    <h2 class="big stagger-words">No cambias de sistema. <span class="serif accent">Se conecta con el tuyo.</span></h2>
+
+    <div class="logogrid">
+      <div class="logocell"><img src="assets/logos/nubox.svg" alt="Nubox"></div>
+      <div class="logocell"><img src="assets/logos/softland.svg" alt="Softland"></div>
+      <div class="logocell"><img class="crop-r" src="assets/logos/laudus.svg" alt="Laudus"></div>
+      <div class="logocell"><img src="assets/logos/buk.svg" alt="Buk"></div>
+      <div class="logocell"><img src="assets/logos/talana.png" alt="Talana"></div>
+      <div class="logocell"><img src="assets/logos/sap.svg" alt="SAP"></div>
+    </div>
+
+    <p class="integra-nota">Contabilidad y remuneraciones. Si tu oficina usa alguno de estos, los datos pueden pasar de un sistema a otro sin que nadie los copie a mano. Si usas otro, se revisa en el diagnóstico.</p>
+  </div>
+</section>
+
+<div class="marq"><div id="marqtrack"></div></div>
+
+<!-- ===================== PRUEBA Y GARANTÍA (única sección clara) ===================== -->
+<section class="proof" id="prueba">
+  <div class="wrap">
+    <span class="kicker">Cómo funciona</span>
+    <h2 class="big stagger-words">Pregúntale a un experto. <span class="serif accent">La primera vez es gratis.</span></h2>
+    <div class="pcols">
+      <div class="psteps">
+        <div class="pstep">
+          <span class="n">01</span>
+          <div>
+            <h4>Miramos tu operación real</h4>
+            <p>Una llamada de diagnóstico, sin costo. Revisamos cómo funciona hoy tu oficina de verdad: dónde se te va el tiempo del equipo, qué se copia a mano de un sistema a otro y qué se te está pasando.</p>
+          </div>
+        </div>
+        <div class="pstep">
+          <span class="n">02</span>
+          <div>
+            <h4>Te muestro dónde está la plata</h4>
+            <p>Casi siempre aparece en los mismos lugares: los datos que alguien traspasa a mano todos los meses entre el software y la planilla, el tracking de vencimientos que se sostiene con memoria y Excel, los documentos que hay que pedirle dos veces al cliente, y el WhatsApp donde el trabajo entra y nadie lo registra. Sales de la llamada sabiendo cuáles son los tuyos, los trabajes conmigo o no.</p>
+          </div>
+        </div>
+        <div class="pstep">
+          <span class="n">03</span>
+          <div>
+            <h4>El precio sale de ese número</h4>
+            <p>Antes de cotizar, le ponemos monto a lo que te está costando hoy. Lo que cobro es una fracción de eso, y va por escrito con el detalle de qué incluye. Si el número no te cierra, no hay proyecto.</p>
+          </div>
+        </div>
+      </div>
+      <aside class="warranty">
+        <h4>La garantía</h4>
+        <p>Si en 30 días tu equipo no está usando el sistema a diario y no tienes tu control de vencimientos funcionando, sigo trabajando gratis hasta que sí.</p>
+        <p class="wnote">Hoy el Centro de Control está instalado y corriendo en un estudio contable de Santiago, con su cartera completa cargada y su equipo usándolo todos los días.</p>
+        <a class="btn wbtn" href="https://cal.com/eitan-markovits/llamada-descubrimiento" target="_blank" rel="noopener">Agendar diagnóstico gratis
+          <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M2.5 9.5L9.5 2.5M4 2.5h5.5V8"/></svg>
+        </a>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== FAQ ===================== -->
+<section class="faq" id="faq">
+  <div class="wrap">
+    <span class="kicker">Antes de que preguntes</span>
+    <h2 class="big stagger-words">Lo que todos <span class="serif accent">me preguntan.</span></h2>
+    <div class="qs">
+      <div class="q">
+        <button type="button">Ya intentamos ordenarnos con un software y terminó abandonado. ¿Por qué esto sería distinto?</button>
+        <div class="ans"><p>Porque no te entrego una herramienta vacía para que la configures. Llega cargada con tus clientes, tus obligaciones y tus responsables, y me quedo acompañando la adopción la primera semana y los 30 días siguientes. El software abandonado casi nunca falla por el software: falla porque nadie sostuvo la puesta en marcha.</p></div>
+      </div>
+      <div class="q">
+        <button type="button">¿Mi equipo tiene que aprender un software nuevo?</button>
+        <div class="ans"><p>No. Cada persona ve una sola pantalla con lo suyo y marca cuando está listo. Un click. Entreno a cada uno personalmente en su pantalla, no en el sistema completo.</p></div>
+      </div>
+      <div class="q">
+        <button type="button">¿Tengo que cambiar los programas que ya uso?</button>
+        <div class="ans"><p>No. El Centro de Control se suma a lo que ya tienes, no lo reemplaza. Y donde hoy alguien copia datos de un sistema a otro a mano, eso es justamente lo que se puede automatizar.</p></div>
+      </div>
+      <div class="q">
+        <button type="button">¿Cuánto cuesta?</button>
+        <div class="ans"><p>Hay un pago único de instalación y una mantención mensual. El monto depende del tamaño de tu estudio y de tu cartera, así que se define en el diagnóstico, con números concretos y por escrito, antes de que decidas nada.</p></div>
+      </div>
+      <div class="q">
+        <button type="button">¿Cuánto se demora en estar andando?</button>
+        <div class="ans"><p>Depende del tamaño de la cartera y de en qué estado esté tu Excel actual. Eso sale del diagnóstico. Lo que no cambia es el orden: primero levantamiento, después montaje, después onboarding con tu equipo y recién ahí queda corriendo.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== CIERRE ===================== -->
+<section class="end" id="cierre">
+  <div class="wrap">
+    <h2 class="stagger-words">Resuelve lo que le quita más tiempo a tu equipo</h2>
+    <a class="btn" href="https://cal.com/eitan-markovits/llamada-descubrimiento" target="_blank" rel="noopener" style="display:inline-flex">Reservar llamada diagnóstico gratis
+      <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M2.5 9.5L9.5 2.5M4 2.5h5.5V8"/></svg>
+    </a>
+  </div>
+  <div class="wrap"><footer><span>Eficcia · Santiago de Chile</span><span>eitan@eficcia.com</span></footer></div>
+</section>
+
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js"></script>
+<script>
+gsap.registerPlugin(ScrollTrigger);
+const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+/* ---------- 1. Loader: celdas que se apagan en orden aleatorio ---------- */
+(function(){
+  const grid = document.getElementById('loadgrid');
+  for (let i = 0; i < 96; i++) grid.appendChild(document.createElement('div'));
+  const cells = Array.from(grid.children);
+  cells.map(c => ({c, r: Math.random()}))
+       .sort((a,b) => a.r - b.r)
+       .forEach(({c}, i) => setTimeout(() => c.classList.add('out'), 150 + i*9));
+  setTimeout(() => grid.remove(), 150 + cells.length*9 + 500);
+})();
+
+/* ---------- 2. Partir cada texto en palabras envueltas en <span> ---------- */
+function splitWords(el, cls){
+  const walk = node => {
+    if (node.nodeType === Node.TEXT_NODE){
+      const frag = document.createDocumentFragment();
+      (node.textContent ?? '').split(/(\s+)/).forEach(tok => {
+        if (!tok) return;
+        if (/^\s+$/.test(tok)) frag.appendChild(document.createTextNode(tok));
+        else { const s = document.createElement('span'); s.className = cls; s.textContent = tok; frag.appendChild(s); }
+      });
+      node.replaceWith(frag);
+    } else if (node.nodeType === Node.ELEMENT_NODE && node.tagName !== 'BR'){
+      Array.from(node.childNodes).forEach(walk);
+    }
+  };
+  Array.from(el.childNodes).forEach(walk);
+}
+
+/* ---------- 3. Los dos revelados de la referencia ---------- */
+// `scrub: true`, no un número. Con un número GSAP intercala un tween suavizado que
+// arranca en progreso 0 y persigue el scroll vía el ticker: si la página carga ya
+// scrolleada, ese tween se queda en 0 y el titular no aparece nunca. Con `true` el
+// progreso se aplica directo, sin intermediario que pueda quedarse atrás.
+// Igual se guardan los tweens para poder sincronizarlos tras cada refresh.
+const conScrub = [];
+// (a) titulares: la palabra cae desde arriba mientras aparece
+function revealDrop(el){
+  splitWords(el, 'tw');
+  const words = el.querySelectorAll('.tw');
+  if (reduced) return;
+  gsap.set(words, {opacity:0, yPercent:-100});
+  conScrub.push(gsap.to(words, {
+    opacity:1, yPercent:0, stagger:0.015, ease:'none',
+    scrollTrigger:{trigger:el, start:'clamp(-250 bottom)', end:'clamp(20 top)', scrub:true}
+  }));
+}
+// (b) párrafos: solo se encienden, sin movimiento
+function revealFade(el){
+  splitWords(el, 'tw');
+  const words = el.querySelectorAll('.tw');
+  if (reduced) return;
+  gsap.set(words, {opacity:0.12});
+  conScrub.push(gsap.to(words, {
+    opacity:1, stagger:0.015, ease:'none',
+    scrollTrigger:{trigger:el, start:'clamp(-200 bottom)', end:'clamp(-100 top)', scrub:true}
+  }));
+}
+document.querySelectorAll('.stagger-words').forEach(revealDrop);
+document.querySelectorAll('.type-in').forEach(revealFade);
+
+/* Los triggers se calculan al correr el script, cuando las fuentes todavía no llegan.
+   Cuando Press Start 2P y Satoshi cargan, el alto de la página cambia y esas posiciones
+   quedan viejas: el revelado no alcanza a completarse y el titular se queda invisible.
+   Por eso hay que recalcular cada vez que el layout se mueve. */
+function sincronizarScrub(){
+  conScrub.forEach(t => { const st = t.scrollTrigger; if (st) t.progress(st.progress); });
+}
+// de entrada: si el navegador restauró el scroll a media página, el revelado ya
+// tiene que estar en su posición, no animándose desde cero durante 0,8 s
+sincronizarScrub();
+ScrollTrigger.addEventListener('refresh', sincronizarScrub);
+function refrescarTriggers(){ ScrollTrigger.refresh(); sincronizarScrub(); }
+if (document.fonts && document.fonts.ready) document.fonts.ready.then(refrescarTriggers);
+window.addEventListener('load', refrescarTriggers);
+window.addEventListener('resize', refrescarTriggers);
+// red de seguridad: si por lo que sea el scrub no arrancó, a los 2 s se sincroniza igual
+setTimeout(refrescarTriggers, 2000);
+
+/* ---------- 4. Tarjetas: la activa se pinta, por hover y por scroll ---------- */
+(function(){
+  const cards = document.querySelectorAll('.acard');
+  const activate = card => cards.forEach(c => c.classList.toggle('cc-active', c === card));
+  cards.forEach(card => {
+    card.addEventListener('mouseenter', () => activate(card));
+    ScrollTrigger.create({trigger:card, start:'top 62%', end:'bottom 62%', onToggle:s => s.isActive && activate(card)});
+  });
+})();
+
+/* ---------- 5. Marquee y nav ---------- */
+(function(){
+  const frase = 'Instalado, cargado y andando';
+  const track = document.getElementById('marqtrack');
+  track.innerHTML = Array(14).fill(`<span>${frase}</span><span>·</span>`).join('');
+  const nav = document.getElementById('nav');
+  ScrollTrigger.create({start:'top -80', onToggle:s => nav.classList.toggle('stuck', s.isActive)});
+})();
+
+/* ---------- 6. FAQ: acordeón de uno a la vez ---------- */
+document.querySelectorAll('.q').forEach(q => {
+  const btn = q.querySelector('button'), ans = q.querySelector('.ans');
+  btn.addEventListener('click', () => {
+    const abierta = q.classList.contains('open');
+    document.querySelectorAll('.q.open').forEach(o => {
+      if (o !== q) { o.classList.remove('open'); o.querySelector('.ans').style.maxHeight = '0px'; }
+    });
+    if (abierta) { q.classList.remove('open'); ans.style.maxHeight = '0px'; }
+    else { q.classList.add('open'); ans.style.maxHeight = ans.scrollHeight + 'px'; }
+  });
+});
+
+/* ---------- 7. Tablero y pasos: entran escalonados al aparecer ---------- */
+(function(){
+  const R = 46, C = 2 * Math.PI * R;   // circunferencia del donut
+
+  // cada segmento es un arco del mismo círculo, corrido por la suma de los anteriores
+  function pintarDonuts(animar){
+    document.querySelectorAll('.pcard').forEach((card, ci) => {
+      const vals = ['ok','soon','late'].map(k => +card.dataset[k] || 0);
+      const total = vals.reduce((a,b) => a+b, 0) || 1;
+      let acum = 0;
+      ['ok','soon','late'].forEach((k,i) => {
+        const seg = card.querySelector('.seg.'+k);
+        const largo = (vals[i]/total) * C;
+        seg.style.strokeDashoffset = -acum;
+        if (animar && !reduced) {
+          gsap.fromTo(seg, {strokeDasharray:'0 '+C},
+            {strokeDasharray:largo+' '+C, duration:.9, ease:'power3.out', delay:ci*.08});
+        } else {
+          seg.style.strokeDasharray = largo+' '+C;
+        }
+        acum += largo;
+      });
+    });
+  }
+  pintarDonuts(false);
+
+  // pestañas Tareas / Dashboard
+  const tabs = document.querySelectorAll('.tab');
+  const vistas = {tareas: document.getElementById('v-tareas'), dash: document.getElementById('v-dash')};
+  tabs.forEach(t => t.addEventListener('click', () => {
+    const v = t.dataset.v;
+    tabs.forEach(o => o.classList.toggle('active', o === t));
+    Object.entries(vistas).forEach(([k, el]) => { if (el) el.hidden = (k !== v); });
+    if (v === 'dash') pintarDonuts(true);
+  }));
+
+  if (reduced) return;
+  const filas = document.querySelectorAll('#v-tareas .brow');
+  if (filas.length) {
+    gsap.set(filas, {opacity:0, x:-16});
+    gsap.to(filas, {opacity:1, x:0, duration:.5, stagger:.06, ease:'power2.out',
+      scrollTrigger:{trigger:'.board', start:'top 80%'}});
+  }
+  const pasos = document.querySelectorAll('.step');
+  if (pasos.length) {
+    gsap.set(pasos, {opacity:0, y:20});
+    gsap.to(pasos, {opacity:1, y:0, duration:.55, stagger:.09, ease:'power2.out',
+      scrollTrigger:{trigger:'.steps', start:'top 85%'}});
+  }
+})();
+
+/* ---------- 8. Video del hero ---------- */
+/* Va visible desde el primer frame con su poster: antes se mostraba una silueta que
+   se cambiaba por el video en 'loadeddata', y al recargar se alcanzaba a ver el parpadeo. */
+(function(){
+  const v = document.querySelector('.bird-media');
+  if (reduced) v.addEventListener('loadeddata', () => v.pause());
+})();
+</script>
+</body>
+</html>
