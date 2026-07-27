@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://eficcia.com/sitemap.xml
