@@ -86,19 +86,19 @@
                rgba(0,0,0,0) 46%,rgba(0,0,0,.72) 74%,rgba(0,0,0,.93) 100%)}
   .stage{position:absolute;inset:0;display:grid;place-items:center;z-index:1;
          pointer-events:none;padding-bottom:14vh}
-  /* el halo radial gigante se quitó: es el delator número uno de plantilla SaaS oscura */
-  .halo{display:none}
-  .bird{width:min(86vw,1120px);display:block;opacity:.92;
-        animation:glide 9s ease-in-out infinite}
   /* centrado en el hero. El monitor viene cortado en el archivo, así que el borde superior
      se desvanece con una máscara: el corte se lee como atmósfera y no como recorte. */
-  .bird-media{position:absolute;top:44%;left:50%;transform:translate(-50%,-50%);
-              width:min(70vw,980px);height:auto;display:block;
+  /* el fotograma y el video comparten posición exacta: cuando el video entra en
+     escritorio el cambio es invisible porque muestran lo mismo */
+  .bird-media,.hero-still{position:absolute;top:44%;left:50%;transform:translate(-50%,-50%);
+              width:min(70vw,980px);height:auto;
               -webkit-mask-image:linear-gradient(180deg,transparent 0%,#000 15%);
               mask-image:linear-gradient(180deg,transparent 0%,#000 15%)}
-  @keyframes glide{0%,100%{transform:translateY(0)}50%{transform:translateY(-16px)}}
-  .ph{position:absolute;bottom:25%;left:50%;transform:translateX(-50%);font-family:var(--mono);
-      font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);z-index:2}
+  .hero-still{display:block}
+  .bird-media{display:none}
+  /* con el video andando, el fotograma sobra */
+  .video-ok .hero-still{display:none}
+  .video-ok .bird-media{display:block}
   /* Press Start 2P es monoespaciada y ancha (~1em por letra) y no tiene itálica real:
      forzarla daría una oblicua sintética que en pixel-art se ve rota. Por eso
      font-style:normal y un tamaño muy por debajo de la escala de la serif. */
@@ -398,13 +398,13 @@
     .foot{flex-direction:column;align-items:flex-start;gap:24px}
     .cta{width:100%;justify-content:space-between}
     .rule{flex:1}
-    .bird,.bird-media{width:112vw}
+    .bird-media,.hero-still{width:112vw}
     .fring{width:58px;height:58px}
     .fring svg{width:23px;height:23px}
     .flabel{font-size:9.5px;letter-spacing:.06em;max-width:13ch}
   }
   @media (prefers-reduced-motion:reduce){
-    .bird{animation:none} .marq div{animation:none} html{scroll-behavior:auto}
+    .marq div{animation:none} html{scroll-behavior:auto}
     .fring::before,.fring::after{animation:none;opacity:0}
     .fdot{display:none}
   }
@@ -430,11 +430,15 @@
 <section class="hero">
   <div class="stage">
     <!-- Al dejar hero.mp4 en assets/, el video se enciende solo y la silueta desaparece. -->
-    <video class="bird-media" autoplay muted loop playsinline preload="auto"
-           poster="assets/hero-poster.jpg" aria-hidden="true">
-      <source src="assets/hero.webm" type="video/webm">
-      <source src="assets/hero.mp4" type="video/mp4">
-    </video>
+    <!-- El fotograma va siempre y es lo único que baja el celular (47 KB contra 325 KB
+         del video). El video se enciende por JS solo donde se sabe que va a reproducir:
+         los celulares bloquean el autoplay por ahorro de datos o batería y dejaban el
+         hero en negro. Sin <source> en el HTML el navegador no descarga nada. -->
+    <img class="hero-still" src="assets/hero-poster.jpg" alt="" aria-hidden="true"
+         width="1280" height="720" fetchpriority="high">
+    <video class="bird-media" muted loop playsinline preload="none"
+           poster="assets/hero-poster.jpg" aria-hidden="true"
+           data-mp4="assets/hero.mp4" data-webm="assets/hero.webm"></video>
   </div>
 
   <h1 class="headline"><span class="ln">Actualiza</span><span class="ln">tu oficina</span></h1>
@@ -700,28 +704,28 @@
           <span class="n">01</span>
           <div>
             <h4>Miramos tu operación real</h4>
-            <p>Una llamada de diagnóstico, sin costo. Revisamos cómo funciona hoy tu oficina de verdad: dónde se te va el tiempo del equipo, qué se copia a mano de un sistema a otro y qué se te está pasando.</p>
+            <p>Una llamada sin costo. Dónde se va el tiempo de tu equipo, qué se copia a mano y qué se te está pasando.</p>
           </div>
         </div>
         <div class="pstep">
           <span class="n">02</span>
           <div>
             <h4>Te muestro dónde está la plata</h4>
-            <p>Casi siempre aparece en los mismos lugares: los datos que alguien traspasa a mano todos los meses entre el software y la planilla, el tracking de vencimientos que se sostiene con memoria y Excel, los documentos que hay que pedirle dos veces al cliente, y el WhatsApp donde el trabajo entra y nadie lo registra. Sales de la llamada sabiendo cuáles son los tuyos, los trabajes conmigo o no.</p>
+            <p>Siempre está en los mismos cuatro lugares: los datos que alguien traspasa a mano entre el software y la planilla, los vencimientos que se sostienen con memoria y Excel, los documentos que hay que pedir dos veces, y el WhatsApp donde el trabajo entra y nadie lo registra. Sales de la llamada sabiendo cuáles son los tuyos, trabajes conmigo o no.</p>
           </div>
         </div>
         <div class="pstep">
           <span class="n">03</span>
           <div>
             <h4>El precio sale de ese número</h4>
-            <p>Antes de cotizar, le ponemos monto a lo que te está costando hoy. Lo que cobro es una fracción de eso, y va por escrito con el detalle de qué incluye. Si el número no te cierra, no hay proyecto.</p>
+            <p>Primero le ponemos monto a lo que te cuesta hoy. Lo que cobro es una fracción de eso y va por escrito. Si no te cierra, no hay proyecto.</p>
           </div>
         </div>
       </div>
       <aside class="warranty">
         <h4>La garantía</h4>
         <p>Si en 30 días tu equipo no está usando el sistema a diario y no tienes tu control de vencimientos funcionando, sigo trabajando gratis hasta que sí.</p>
-        <p class="wnote">Hoy el Centro de Control está instalado y corriendo en un estudio contable de Santiago, con su cartera completa cargada y su equipo usándolo todos los días.</p>
+        <p class="wnote">Hoy está instalado y corriendo en un estudio contable de Santiago, con su cartera completa y su equipo usándolo a diario.</p>
         <a class="btn wbtn" href="https://cal.com/eitan-markovits/llamada-descubrimiento" target="_blank" rel="noopener">Agendar diagnóstico gratis
           <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M2.5 9.5L9.5 2.5M4 2.5h5.5V8"/></svg>
         </a>
@@ -939,12 +943,31 @@ document.querySelectorAll('.q').forEach(q => {
   }
 })();
 
-/* ---------- 8. Video del hero ---------- */
-/* Va visible desde el primer frame con su poster: antes se mostraba una silueta que
-   se cambiaba por el video en 'loadeddata', y al recargar se alcanzaba a ver el parpadeo. */
+/* ---------- 8. Video del hero: solo donde de verdad va a reproducir ---------- */
+/* En celular el autoplay lo bloquean el ahorro de datos, el modo de bajo consumo o
+   la política del sistema, y el hero quedaba en negro. Ahí se muestra el fotograma
+   y el video ni siquiera se descarga: 47 KB en vez de 325 KB. */
 (function(){
   const v = document.querySelector('.bird-media');
-  if (reduced) v.addEventListener('loadeddata', () => v.pause());
+  if (!v || reduced) return;
+  const con = navigator.connection || {};
+  const angosto = window.matchMedia('(max-width:900px)').matches;
+  const ahorro  = con.saveData === true;
+  const lenta   = /^(slow-2g|2g|3g)$/.test(con.effectiveType || '');
+  if (angosto || ahorro || lenta) return;          // se queda el fotograma
+
+  ['webm','mp4'].forEach(tipo => {
+    const src = v.dataset[tipo];
+    if (!src) return;
+    const s = document.createElement('source');
+    s.src = src; s.type = 'video/' + tipo;
+    v.appendChild(s);
+  });
+  v.preload = 'auto';
+  v.load();
+  // recién cuando de verdad está corriendo se cambia; si falla, queda el fotograma
+  v.addEventListener('playing', () => document.body.classList.add('video-ok'), {once:true});
+  v.play().catch(() => {});
 })();
 </script>
 </body>
